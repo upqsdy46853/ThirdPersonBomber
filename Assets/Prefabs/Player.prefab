@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2490771348831146124}
   - component: {fileID: 2490771348831146226}
   - component: {fileID: 2490771348831146227}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: landingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7884250791504272659}
   - component: {fileID: 7884250791504272660}
   - component: {fileID: 7884250791504272661}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,13 +130,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   bullet: {fileID: 7799023860971238857, guid: e3f3a59ae80494fe5882d79efae56f45, type: 3}
+  landingPos: {fileID: 2490771348831146125}
   numPoints: 50
   timeBetweenPoints: 0.01
   F: 10
   CollidableLayers:
     serializedVersion: 2
-    m_Bits: 64
-  landingPos: {fileID: 2490771348831146124}
+    m_Bits: 192
 --- !u!120 &7884250791504272661
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -245,7 +245,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7884250791721155598}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: camLookAt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 7884250791846300031}
   - component: {fileID: 7884250791846300027}
   - component: {fileID: 7884250791846300026}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,6 @@ MonoBehaviour:
   moveSpeed: 3
   jumpSpeed: 8
   dir: {x: 0, y: 0, z: 0}
-  CM_vcam: {fileID: 7193171120364927225, guid: 45a90d94a836049a7b8bd0c531b81590, type: 3}
 --- !u!114 &7884250791846300031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,6 +398,7 @@ MonoBehaviour:
       m_LegacyHeadingDefinition: 0
       m_LegacyVelocityFilterStrength: 0
   camLookAt: {fileID: 7884250791721155598}
+  CM_vcam: {fileID: 7193171120364927225, guid: 45a90d94a836049a7b8bd0c531b81590, type: 3}
 --- !u!143 &7884250791846300027
 CharacterController:
   m_ObjectHideFlags: 0
@@ -457,7 +457,7 @@ GameObject:
   - component: {fileID: 7884250792963657645}
   - component: {fileID: 7884250792963657646}
   - component: {fileID: 7884250792963657647}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d206c385f1b864d0db5e115426c8d684, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

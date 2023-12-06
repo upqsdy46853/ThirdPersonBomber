@@ -7,13 +7,15 @@ public class trajectory : NetworkBehaviour
 {
     // Start is called before the first frame update
     public GameObject bullet;
+    public GameObject landingPos;
+
     LineRenderer lineRenderer;
     public float numPoints = 50.0f;
     public float timeBetweenPoints = 0.1f;
     public float F = 5.0f;
     public LayerMask CollidableLayers;
     Camera mainCamera;
-    [SerializeField] Transform landingPos;
+    Vector3 startingVelocity;
     private bool _shootPressed;
 
 
@@ -30,16 +32,7 @@ public class trajectory : NetworkBehaviour
         {
             _shootPressed = true;
         }
-    }
 
-
-    // Update is called once per frame
-    public override void FixedUpdateNetwork(){
-        if (HasStateAuthority == false){
-            return;
-        }
-        Vector2 screenCentre = new Vector2(Screen.width / 2, Screen.height / 2);
-        Ray ray = Camera.main.ScreenPointToRay(screenCentre);
         Vector3 startingPosition = this.transform.position;
         float cam_pitch = mainCamera.transform.rotation.eulerAngles.x;
         float pitch = -40;
@@ -47,7 +40,7 @@ public class trajectory : NetworkBehaviour
         transform.rotation = mainCamera.transform.rotation;
         transform.Rotate(pitch, 0, 0);
 
-        Vector3 startingVelocity = transform.forward * F;
+        startingVelocity = transform.forward * F;
         
         List<Vector3> points = new List<Vector3>();
         for (float t = 0; t < numPoints; t += timeBetweenPoints){
@@ -56,11 +49,19 @@ public class trajectory : NetworkBehaviour
             points.Add(newPoint);
             if(Physics.OverlapSphere(newPoint, 0.1f, CollidableLayers).Length > 0){
                 lineRenderer.positionCount = points.Count;
-                landingPos.position = newPoint;
+                landingPos.transform.position = newPoint;
                 break;
             }
         }
         lineRenderer.SetPositions(points.ToArray());
+    }
+
+
+    // Update is called once per frame
+    public override void FixedUpdateNetwork(){
+        if (HasStateAuthority == false){
+            return;
+        }
 
         if(_shootPressed){
             Runner.Spawn(
@@ -75,5 +76,13 @@ public class trajectory : NetworkBehaviour
         }
 
         _shootPressed = false;
+    }
+
+    public override void Spawned(){
+        if (!HasStateAuthority){
+            lineRenderer.enabled = false;
+            landingPos.SetActive(false);
+            gameObject.GetComponent<trajectory>().enabled = false;
+        }
     }
 }
