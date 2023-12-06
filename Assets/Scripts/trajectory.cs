@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fusion;
 
-public class trajectory : MonoBehaviour
+public class trajectory : NetworkBehaviour
 {
     // Start is called before the first frame update
-    GameObject prefab;
     public GameObject bullet;
     LineRenderer lineRenderer;
     public float numPoints = 50.0f;
@@ -14,16 +14,30 @@ public class trajectory : MonoBehaviour
     public LayerMask CollidableLayers;
     Camera mainCamera;
     [SerializeField] Transform landingPos;
-    void Start()
+    private bool _shootPressed;
+
+
+    void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
         mainCamera = Camera.main;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            _shootPressed = true;
+        }
+    }
+
+
+    // Update is called once per frame
+    public override void FixedUpdateNetwork(){
+        if (HasStateAuthority == false){
+            return;
+        }
         Vector2 screenCentre = new Vector2(Screen.width / 2, Screen.height / 2);
         Ray ray = Camera.main.ScreenPointToRay(screenCentre);
         Vector3 startingPosition = this.transform.position;
@@ -48,9 +62,18 @@ public class trajectory : MonoBehaviour
         }
         lineRenderer.SetPositions(points.ToArray());
 
-        if(Input.GetMouseButtonDown(0)){
-            prefab = Instantiate(bullet, transform.position, Quaternion.identity);
-            prefab.GetComponent<Rigidbody>().velocity = startingVelocity;
+        if(_shootPressed){
+            Runner.Spawn(
+                bullet, 
+                transform.position, 
+                Quaternion.identity, 
+                Object.InputAuthority,
+                (runner, o) => {
+                    o.GetComponent<bullet>().Init(startingVelocity);
+                }
+            );
         }
+
+        _shootPressed = false;
     }
 }
