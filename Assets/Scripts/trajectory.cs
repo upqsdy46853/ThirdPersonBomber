@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
+
 
 public class trajectory : MonoBehaviour
 {
@@ -49,7 +52,7 @@ public class trajectory : MonoBehaviour
         lineRenderer.SetPositions(points.ToArray());
 
         if(Input.GetMouseButtonDown(0)){
-            prefab = Instantiate(bullet, transform.position, Quaternion.identity);
+            prefab = PhotonNetwork.Instantiate("Bullet", transform.position, Quaternion.identity);
             prefab.GetComponent<Rigidbody>().velocity = startingVelocity;
         }
     }
