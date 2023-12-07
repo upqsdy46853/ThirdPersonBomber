@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7799023860971238852}
   - component: {fileID: 7799023860971238859}
   - component: {fileID: 7799023860971238858}
-  - component: {fileID: 2108602598656281502}
+  - component: {fileID: 7684928701354192377}
   m_Layer: 0
   m_Name: bullet
   m_TagString: Untagged
@@ -119,7 +119,7 @@ MonoBehaviour:
     RotTeleportRadians: 1.5
   UseLegacySharedModeInterpolation: 0
   TargetInterpolationDelay: 0.03
---- !u!135 &2108602598656281502
+--- !u!135 &7684928701354192377
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

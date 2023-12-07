@@ -531,6 +531,7 @@ GameObject:
   - component: {fileID: 1225303530}
   - component: {fileID: 1225303529}
   - component: {fileID: 1225303532}
+  - component: {fileID: 1225303533}
   m_Layer: 0
   m_Name: Prototype Runner
   m_TagString: Untagged
@@ -638,6 +639,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 7884250791846300016, guid: 7f9b9ba770af847ecbd734786b189f44, type: 3}
+--- !u!114 &1225303533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225303528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba943a141135641c9b7b51b10c53ade7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AmethystPrefab: {fileID: 6477918756093165158, guid: aeb273298f14a466c8ccb763c0e79c76, type: 3}
 --- !u!1 &1229326101
 GameObject:
   m_ObjectHideFlags: 0

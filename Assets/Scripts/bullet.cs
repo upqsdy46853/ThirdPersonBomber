@@ -14,9 +14,13 @@ public class bullet : NetworkBehaviour
     public override void FixedUpdateNetwork() {
         if(life.Expired(Runner))
             Runner.Despawn(Object);
-
     }
     private void OnCollisionEnter(Collision other) {
-        print(other.gameObject.name);
+        if(!HasStateAuthority)
+            return;
+        //print(other.gameObject.name);
+        if (other.gameObject.TryGetComponent<PlayerState>(out var player)){
+            player.DealDamageRpc(10);
+        }
     }
 }

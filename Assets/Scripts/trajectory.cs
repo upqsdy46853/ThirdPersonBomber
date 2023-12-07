@@ -56,8 +56,6 @@ public class trajectory : NetworkBehaviour
         lineRenderer.SetPositions(points.ToArray());
     }
 
-
-    // Update is called once per frame
     public override void FixedUpdateNetwork(){
         if (HasStateAuthority == false){
             return;
