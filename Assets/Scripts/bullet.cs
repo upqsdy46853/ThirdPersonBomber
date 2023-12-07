@@ -16,4 +16,7 @@ public class bullet : NetworkBehaviour
             Runner.Despawn(Object);
 
     }
+    private void OnCollisionEnter(Collision other) {
+        print(other.gameObject.name);
+    }
 }
