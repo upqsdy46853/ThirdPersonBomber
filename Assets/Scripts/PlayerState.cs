@@ -1,10 +1,12 @@
 using Fusion;
 using UnityEngine;
+using TMPro;
 
 public class PlayerState : NetworkBehaviour
 {
     public MeshRenderer MeshRenderer;
     public GameObject obj;
+    public TextMeshProUGUI playerNicknameTM;
 
     [Networked(OnChanged = nameof(NetworkColorChanged))]
     public Color NetworkedColor { get; set; }
@@ -43,6 +45,7 @@ public class PlayerState : NetworkBehaviour
     private static void NetworkNicknameChanged(Changed<PlayerState> changed)
     {
         changed.Behaviour.obj.name = changed.Behaviour.NetworkedNickname;
+        changed.Behaviour.playerNicknameTM.text = changed.Behaviour.NetworkedNickname;
     }
 
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
