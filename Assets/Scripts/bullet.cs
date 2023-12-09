@@ -15,4 +15,13 @@ public class bullet : NetworkBehaviour
         if(life.Expired(Runner))
             Runner.Despawn(Object);
     }
+
+    private void OnCollisionEnter(Collision other) {
+        if (Object.HasStateAuthority)
+        {
+            if(other.gameObject.TryGetComponent<PlayerState>(out var state)){
+                state.OnTakeDamage();
+            }
+        }
+    }
 }
