@@ -1,32 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fusion;
 
-public class movement : MonoBehaviour
+public class movement : NetworkBehaviour
 {
     public float moveSpeed = 3;
-    public float jumpSpeed = 1f;
     [HideInInspector] public Vector3 dir;
-    float hInput, vInput;
-    CharacterController controller;
+
+    NetworkCharacterControllerPrototypeCustom controller;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        controller = GetComponent<CharacterController>();
+        controller = GetComponent<NetworkCharacterControllerPrototypeCustom>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(controller.isGrounded){
-            hInput = Input.GetAxis("Horizontal");
-            vInput = Input.GetAxis("Vertical");
-            dir = transform.forward * vInput * moveSpeed + transform.right * hInput * moveSpeed;
-            if(Input.GetButtonDown("Jump")){
-                dir.y += jumpSpeed;
-            }
-        }
-        dir += Physics.gravity * Time.deltaTime;
-        controller.Move(dir * Time.deltaTime);
+        
     }
+
+    public override void FixedUpdateNetwork() {
+        if (GetInput(out NetworkInputData data)){
+            dir = transform.forward * data.vInput * moveSpeed + transform.right * data.hInput * moveSpeed;
+            controller.Move(dir * Runner.DeltaTime);
+            if(data.isJump)
+                controller.Jump();
+        }
+
+    }
+    
 }
