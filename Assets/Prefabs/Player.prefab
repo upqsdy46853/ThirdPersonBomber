@@ -1,5 +1,55 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1296203606166595552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4129043219833087847}
+  - component: {fileID: 7915531975453321825}
+  m_Layer: 7
+  m_Name: HitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4129043219833087847
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296203606166595552}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7045510446345952625}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7915531975453321825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296203606166595552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1014831617, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 1
+  SphereRadius: 0
+  BoxExtents: {x: 0.5, y: 0.5, z: 0.5}
+  Offset: {x: 0, y: 0, z: 0}
+  Root: {fileID: 5824107158941425598}
+  GizmosColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &7045510445981817087
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +61,7 @@ GameObject:
   - component: {fileID: 7045510445981817086}
   - component: {fileID: 7045510445981817084}
   - component: {fileID: 7045510445981817085}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +220,8 @@ GameObject:
   - component: {fileID: 775098606825226926}
   - component: {fileID: 4191409379011189729}
   - component: {fileID: -3942501486282277601}
-  m_Layer: 0
+  - component: {fileID: 5824107158941425598}
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,6 +242,7 @@ Transform:
   m_Children:
   - {fileID: 7045510446954254963}
   - {fileID: 7045510446533528417}
+  - {fileID: 4129043219833087847}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -305,6 +357,7 @@ MonoBehaviour:
   - {fileID: 775098606825226926}
   - {fileID: 4191409379011189729}
   - {fileID: -3942501486282277601}
+  - {fileID: 5824107158941425598}
   - {fileID: 7045510445981817084}
   SimulationBehaviours: []
 --- !u!65 &7045510446345952637
@@ -316,7 +369,7 @@ BoxCollider:
   m_GameObject: {fileID: 7045510446345952630}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -382,6 +435,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
+--- !u!114 &5824107158941425598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7045510446345952630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1039544458, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  Config: 1
+  BroadRadius: 0.8660254
+  Offset: {x: 0, y: 0, z: 0}
+  GizmosColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  Hitboxes:
+  - {fileID: 7915531975453321825}
 --- !u!1 &7045510446533528418
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,7 +465,7 @@ GameObject:
   - component: {fileID: 7045510446533528417}
   - component: {fileID: 7045510446533528431}
   - component: {fileID: 7045510446533528416}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +517,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d206c385f1b864d0db5e115426c8d684, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -478,7 +550,7 @@ GameObject:
   - component: {fileID: 7045510446954254963}
   - component: {fileID: 7045510446954254964}
   - component: {fileID: 7045510446954254965}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: landingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,7 +631,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7045510447534176438}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: camLookAt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
