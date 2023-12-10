@@ -6,10 +6,11 @@ using Fusion;
 public class movement : NetworkBehaviour
 {
     public float moveSpeed = 3;
+    Animator a;
     [HideInInspector] public Vector3 dir;
 
     NetworkCharacterControllerPrototypeCustom controller;
-    Animator a;
+    
     // Start is called before the first frame update
     void Awake()
     {
