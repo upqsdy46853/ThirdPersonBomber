@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
+using TMPro;
+
 
 public class PlayerState : NetworkBehaviour
 {
     // public Material material;
     [Networked(OnChanged = nameof(OnHPChanged))]
-
     byte HP {get; set;}
     const byte startingHP = 10;
 
@@ -15,6 +16,9 @@ public class PlayerState : NetworkBehaviour
     public Color Team { get; set; }
     public MeshRenderer MeshRenderer;
 
+    [Networked(OnChanged = nameof(OnNicknameChanged))] 
+    public NetworkString<_16> nickName {get; set;}
+    public TextMeshProUGUI playerNickNameTM;
 
     void Start(){
         HP = startingHP;
@@ -39,7 +43,12 @@ public class PlayerState : NetworkBehaviour
             else
                 Team = Color.blue;
         }
+    }
 
+    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
+    public void RPC_SetNickName(string nickName, RpcInfo info = default)
+    {
+        this.nickName = nickName;
     }
 
     static void OnTeamChanged(Changed<PlayerState> changed)
@@ -47,6 +56,18 @@ public class PlayerState : NetworkBehaviour
         changed.Behaviour.MeshRenderer.material.color = changed.Behaviour.Team;
     }
 
+    static void OnNicknameChanged(Changed<PlayerState> changed)
+    {
+        changed.Behaviour.playerNickNameTM.text = changed.Behaviour.nickName.ToString();
+    }
+
+    public override void Spawned()
+    {
+        if(Object.HasInputAuthority)
+        {
+            RPC_SetNickName(PlayerPrefs.GetString("PlayerNickname"));
+        }
+    }
 
 
 }
