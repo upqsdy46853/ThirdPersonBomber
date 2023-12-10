@@ -569,6 +569,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   moveSpeed: 3
+  a: {fileID: 387759911734859512}
   dir: {x: 0, y: 0, z: 0}
   hInput: 0
   vInput: 0
@@ -684,6 +685,7 @@ MonoBehaviour:
     _data:
       Data: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   playerNickNameTM: {fileID: 5638297278580334985}
+  _amethystCount: 0
 --- !u!114 &5824107158941425598
 MonoBehaviour:
   m_ObjectHideFlags: 0

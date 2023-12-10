@@ -6,7 +6,7 @@ using Fusion;
 public class movement : NetworkBehaviour
 {
     public float moveSpeed = 3;
-    Animator a;
+    public Animator a;
     [HideInInspector] public Vector3 dir;
     public float hInput;
     public float vInput;
@@ -17,7 +17,7 @@ public class movement : NetworkBehaviour
     void Awake()
     {
         controller = GetComponent<NetworkCharacterControllerPrototypeCustom>();
-        a = GameObject.Find("MaleCharacterPolyart").GetComponent<Animator>();
+        //a = GameObject.Find("MaleCharacterPolyart").GetComponent<Animator>();
     }
 
     void Update()
