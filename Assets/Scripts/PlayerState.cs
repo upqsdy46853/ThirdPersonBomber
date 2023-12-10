@@ -20,8 +20,24 @@ public class PlayerState : NetworkBehaviour
     public NetworkString<_16> nickName {get; set;}
     public TextMeshProUGUI playerNickNameTM;
 
-    void Start(){
+    void Start()
+    {
         HP = startingHP;
+    }
+
+    void Update()
+    {
+        if(Object.HasInputAuthority)
+        {
+            if(Input.GetKeyDown(KeyCode.R))
+            {
+                RPC_SetTeam(Color.red);
+            }
+            if(Input.GetKeyDown(KeyCode.B))
+            {
+                RPC_SetTeam(Color.blue);
+            }
+        }
     }
 
     public void OnTakeDamage()
@@ -34,15 +50,16 @@ public class PlayerState : NetworkBehaviour
     {
         Debug.Log(changed.Behaviour.HP);
     }
-
-    public void OnChangeTeam(int id)
+    
+    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
+    public void RPC_SetTeam(Color color)
     {
-        if (Object.HasStateAuthority){
-            if(id % 2 == 0)
-                Team = Color.red;
-            else
-                Team = Color.blue;
-        }
+        Team = color;
+    }
+
+    static void OnTeamChanged(Changed<PlayerState> changed)
+    {
+        changed.Behaviour.MeshRenderer.material.color = changed.Behaviour.Team;
     }
 
     [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
@@ -51,10 +68,7 @@ public class PlayerState : NetworkBehaviour
         this.nickName = nickName;
     }
 
-    static void OnTeamChanged(Changed<PlayerState> changed)
-    {
-        changed.Behaviour.MeshRenderer.material.color = changed.Behaviour.Team;
-    }
+   
 
     static void OnNicknameChanged(Changed<PlayerState> changed)
     {

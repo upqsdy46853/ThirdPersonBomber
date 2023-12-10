@@ -7,6 +7,8 @@ public class movement : NetworkBehaviour
 {
     public float moveSpeed = 3;
     [HideInInspector] public Vector3 dir;
+    public float hInput;
+    public float vInput;
 
     NetworkCharacterControllerPrototypeCustom controller;
     // Start is called before the first frame update
@@ -17,7 +19,8 @@ public class movement : NetworkBehaviour
 
     void Update()
     {
-        
+        hInput = Input.GetAxis("Horizontal");
+        vInput = Input.GetAxis("Vertical");
     }
 
     public override void FixedUpdateNetwork() {
@@ -27,7 +30,13 @@ public class movement : NetworkBehaviour
             if(data.isJump)
                 controller.Jump();
         }
-
     }
+
+    public Vector3 GetMovementVector()
+    {
+        return new Vector2(hInput, vInput);
+    }
+
+
     
 }

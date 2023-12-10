@@ -14,6 +14,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     private NetworkRunner _runner;
     [SerializeField] private NetworkPlayer _playerPrefab;
     private bool _mouseButton0;
+    private bool _isJump;
 
 
     // Start is called before the first frame update
@@ -26,6 +27,8 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     void Update()
     {
         _mouseButton0 = _mouseButton0 || Input.GetMouseButton(0);
+        if(Input.GetButtonDown("Jump"))
+            _isJump = true;
     }
 
     async void JoinRoom(GameMode mode)
@@ -53,9 +56,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             // Create a unique position for the player
             Vector3 spawnPosition = new Vector3((player.RawEncoded%runner.Config.Simulation.DefaultPlayers)*3,1,0);
             int id = player.PlayerId;
-            runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player, (runner, spawnedPlayer)=>{
-                spawnedPlayer.GetComponent<PlayerState>().OnChangeTeam(id);
-            });
+            runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player, (runner, spawnedPlayer)=>{});
 
         }
     }
@@ -69,15 +70,20 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         if (_mouseButton0)
             data.buttons |= NetworkInputData.MOUSEBUTTON1;
         _mouseButton0 = false;
+        data.isJump = _isJump;
+        _isJump = false;
 
-        data.hInput = Input.GetAxis("Horizontal");
-        data.vInput = Input.GetAxis("Vertical");
-        data.isJump = Input.GetButtonDown("Jump");
 
+        // NetworkPlayer.Local is a static variable used to get the gameObject of local player 
         if(NetworkPlayer.Local != null){
+            Vector2 moveVector = NetworkPlayer.Local.GetComponent<movement>().GetMovementVector();
+            data.hInput = moveVector.x;
+            data.vInput = moveVector.y;
+
             Vector2 viewVector = NetworkPlayer.Local.GetComponent<camControl>().GetViewVector();
             data.xAxis = viewVector.x;
             data.yAxis = viewVector.y;
+
             Transform hand = NetworkPlayer.Local.transform.Find("body").Find("hand");
             data.startingVelocity = hand.GetComponent<trajectory>().GetStartingVelocity();
         }

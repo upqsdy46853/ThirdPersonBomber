@@ -568,6 +568,8 @@ MonoBehaviour:
   _interpolationDataSource: 0
   moveSpeed: 3
   dir: {x: 0, y: 0, z: 0}
+  hInput: 0
+  vInput: 0
 --- !u!114 &7045510446345952636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,7 +609,7 @@ BoxCollider:
   m_GameObject: {fileID: 7045510446345952630}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -763,7 +765,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d206c385f1b864d0db5e115426c8d684, type: 2}
+  - {fileID: 2100000, guid: 5221305222ff1434fb5519a8c3f3788d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
