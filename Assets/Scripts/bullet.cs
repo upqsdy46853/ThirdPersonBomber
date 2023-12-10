@@ -34,15 +34,6 @@ public class bullet : NetworkBehaviour
         }
     }
 
-    // private void OnCollisionEnter(Collision other) {
-    //     if (Object.HasStateAuthority)
-    //     {
-    //         if(other.gameObject.TryGetComponent<PlayerState>(out var state)){
-    //             state.OnTakeDamage();
-    //         }
-    //     }
-    // }
-
     IEnumerator spawnedCO(Vector3  startingVelocity)
     {
         yield return new WaitForSeconds(0.01f);
@@ -59,7 +50,7 @@ public class bullet : NetworkBehaviour
                 Vector3 direction = obj.transform.position - transform.position;
                 float distance = direction.magnitude;
                 bool blocked = Physics.Raycast(transform.position, direction.normalized, distance, groundLayer);
-                if(!blocked && Object.HasStateAuthority)
+                if(!blocked)
                     state.OnTakeDamage();
             }
         }

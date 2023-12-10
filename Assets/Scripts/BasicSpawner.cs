@@ -28,7 +28,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         _mouseButton0 = _mouseButton0 || Input.GetMouseButton(0);
     }
 
-    async void StartGame(GameMode mode)
+    async void JoinRoom(GameMode mode)
     {
         // Create the Fusion runner and let it know that we will be providing user input
         _runner = gameObject.AddComponent<NetworkRunner>();
@@ -38,39 +38,33 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         await _runner.StartGame(new StartGameArgs()
         {
             GameMode = mode,
-            SessionName = "TestRoom",
-            Scene = SceneManager.GetActiveScene().buildIndex,
+            SessionName = "Game",
+            Scene = SceneUtility.GetBuildIndexByScenePath("Scenes/Ready"),
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
         });
     }
 
-
-    private void OnGUI()
-    {
-        if (_runner == null)
-        {
-            if (GUI.Button(new Rect(0,0,200,40), "Host"))
-            {
-                StartGame(GameMode.Host);
-            }
-            if (GUI.Button(new Rect(0,40,200,40), "Join"))
-            {
-                StartGame(GameMode.Client);
-            }
-        }
+    public void OnJoinRoom(){
+        JoinRoom(GameMode.AutoHostOrClient);
     }
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player){
         if (runner.IsServer){
             // Create a unique position for the player
             Vector3 spawnPosition = new Vector3((player.RawEncoded%runner.Config.Simulation.DefaultPlayers)*3,1,0);
-            runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player);
+            int id = player.PlayerId;
+            runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player, (runner, spawnedPlayer)=>{
+                spawnedPlayer.GetComponent<PlayerState>().OnChangeTeam(id);
+            });
+
         }
     }
+    
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player){
 
     }
     public void OnInput(NetworkRunner runner, NetworkInput input){
+            
         NetworkInputData data = new NetworkInputData();
         if (_mouseButton0)
             data.buttons |= NetworkInputData.MOUSEBUTTON1;

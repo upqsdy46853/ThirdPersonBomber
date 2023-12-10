@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 5824107158941425598}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -435,6 +435,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
+  _Team: {r: 0, g: 0, b: 0, a: 0}
+  MeshRenderer: {fileID: 7045510446533528416}
 --- !u!114 &5824107158941425598
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -24,6 +24,7 @@ public class trajectory : NetworkBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         mainCamera = Camera.main;
+        DontDestroyOnLoad(mainCamera);
     }
 
     // Update is called once per frame
@@ -78,7 +79,6 @@ public class trajectory : NetworkBehaviour
         if (!HasInputAuthority){
             lineRenderer.enabled = false;
             landingPos.SetActive(false);
-            // gameObject.GetComponent<trajectory>().enabled = false;
         }
     }
 
