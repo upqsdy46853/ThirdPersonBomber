@@ -9,10 +9,12 @@ public class movement : NetworkBehaviour
     [HideInInspector] public Vector3 dir;
 
     NetworkCharacterControllerPrototypeCustom controller;
+    Animator a;
     // Start is called before the first frame update
     void Awake()
     {
         controller = GetComponent<NetworkCharacterControllerPrototypeCustom>();
+        a = GameObject.Find("MaleCharacterPolyart").GetComponent<Animator>();
     }
 
     void Update()
@@ -25,7 +27,24 @@ public class movement : NetworkBehaviour
             dir = transform.forward * data.vInput * moveSpeed + transform.right * data.hInput * moveSpeed;
             controller.Move(dir * Runner.DeltaTime);
             if(data.isJump)
+            {
+                a.SetBool( "jump", true );
                 controller.Jump();
+            }
+
+            else
+            {
+                a.SetBool( "jump", false );
+                if ( (data.vInput != 0) || (data.hInput != 0) )
+                {
+                    a.SetBool( "run", true );
+                }
+                else
+                {
+                    a.SetBool( "run", false );
+                }
+            }
+                
         }
 
     }

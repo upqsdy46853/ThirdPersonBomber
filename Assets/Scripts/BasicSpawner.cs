@@ -72,7 +72,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
         data.hInput = Input.GetAxis("Horizontal");
         data.vInput = Input.GetAxis("Vertical");
-        data.isJump = Input.GetButtonDown("Jump");
+        data.isJump = Input.GetKey(KeyCode.Space);
 
         if(NetworkPlayer.Local != null){
             Vector2 viewVector = NetworkPlayer.Local.GetComponent<camControl>().GetViewVector();
