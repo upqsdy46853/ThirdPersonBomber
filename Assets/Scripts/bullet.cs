@@ -43,7 +43,7 @@ public class bullet : NetworkBehaviour
     IEnumerator explodeCO(){
         isHit = true;
         yield return new WaitForSeconds(1f);
-        int hitCount = Runner.LagCompensation.OverlapSphere(transform.position, 30f, Object.InputAuthority, hits, playerLayer, HitOptions.None);
+        int hitCount = Runner.LagCompensation.OverlapSphere(transform.position, 3f, Object.InputAuthority, hits, playerLayer, HitOptions.None);
         for(int i = 0; i<hitCount; i++){
             var obj = hits[i].Hitbox.Root;
             if(obj.TryGetComponent<PlayerState>(out var state)){

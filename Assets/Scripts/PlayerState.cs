@@ -10,7 +10,6 @@ public class PlayerState : NetworkBehaviour
     // public Material material;
     [Networked(OnChanged = nameof(OnHPChanged))]
     byte HP {get; set;}
-    const byte startingHP = 10;
 
     [Networked(OnChanged = nameof(OnTeamChanged))]
     public Color Team { get; set; }
@@ -20,9 +19,13 @@ public class PlayerState : NetworkBehaviour
     public NetworkString<_16> nickName {get; set;}
     public TextMeshProUGUI playerNickNameTM;
 
+    [Networked(OnChanged = nameof(OnAmethystChanged))]
+    public int amethystCount {get; set;}
+
     void Start()
     {
-        HP = startingHP;
+        HP = 10;
+        amethystCount = 0;
     }
 
     void Update()
@@ -49,6 +52,17 @@ public class PlayerState : NetworkBehaviour
     static void OnHPChanged(Changed<PlayerState> changed)
     {
         Debug.Log(changed.Behaviour.HP);
+    }
+
+    public void OnGetAmethyst()
+    {
+        if (Object.HasStateAuthority)
+            amethystCount += 1;
+    }
+
+    static void OnAmethystChanged(Changed<PlayerState> changed)
+    {
+        Debug.Log(changed.Behaviour.amethystCount);
     }
     
     [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
