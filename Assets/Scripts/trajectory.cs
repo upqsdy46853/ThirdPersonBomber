@@ -17,6 +17,7 @@ public class trajectory : NetworkBehaviour
     public GameObject landingPos;
     [Networked] private TickTimer delay { get; set; }
     Vector3 startingVelocity;
+    public Animator a;
 
 
 
@@ -69,9 +70,25 @@ public class trajectory : NetworkBehaviour
                     (runner, o) =>
                     {
                         o.GetComponent<bullet>().Init(data.startingVelocity);
+                        //a.SetBool( "attack", true );
                     });
+                    a.SetBool( "attack", true );
                 }
+
+                else
+                {
+                    //a.SetBool( "attack", false );
+
+                }
+
             }
+
+            else
+            {
+                a.SetBool( "attack", false );
+
+            }
+
         }
     }
 

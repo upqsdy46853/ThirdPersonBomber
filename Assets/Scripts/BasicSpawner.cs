@@ -73,6 +73,9 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         data.isJump = _isJump;
         _isJump = false;
 
+        data.hInput = Input.GetAxis("Horizontal");
+        data.vInput = Input.GetAxis("Vertical");
+        data.isJump = Input.GetKey(KeyCode.Space);
 
         // NetworkPlayer.Local is a static variable used to get the gameObject of local player 
         if(NetworkPlayer.Local != null){
