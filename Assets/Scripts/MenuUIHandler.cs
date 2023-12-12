@@ -18,7 +18,14 @@ public class MenuUIHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // PlayerPrefs.SetString("PlayerNickname", inputField.text);
+        // PlayerPrefs.Save();
+    }
+
+    public void onJoinGameClicked()
+    {
         PlayerPrefs.SetString("PlayerNickname", inputField.text);
         PlayerPrefs.Save();
     }
+
 }
