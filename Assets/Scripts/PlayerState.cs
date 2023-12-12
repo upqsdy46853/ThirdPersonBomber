@@ -82,11 +82,15 @@ public class PlayerState : NetworkBehaviour
         this.nickName = nickName;
     }
 
-   
+    private void OnNicknameChanged()
+    {
+        playerNickNameTM.text = nickName.ToString();
+    }
 
     static void OnNicknameChanged(Changed<PlayerState> changed)
     {
-        changed.Behaviour.playerNickNameTM.text = changed.Behaviour.nickName.ToString();
+        changed.Behaviour.OnNicknameChanged();
+        // changed.Behaviour.playerNickNameTM.text = changed.Behaviour.nickName.ToString();
     }
 
     public override void Spawned()
