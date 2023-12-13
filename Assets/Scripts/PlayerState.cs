@@ -51,6 +51,7 @@ public class PlayerState : NetworkBehaviour
 
     static void OnHPChanged(Changed<PlayerState> changed)
     {
+        //a.SetBool( "hit", true );
         Debug.Log(changed.Behaviour.HP);
     }
 

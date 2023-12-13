@@ -7,6 +7,7 @@ public class movement : NetworkBehaviour
 {
     public float moveSpeed = 3;
     public Animator a;
+    private int hittedState;
     [HideInInspector] public Vector3 dir;
     public float hInput;
     public float vInput;
@@ -17,6 +18,7 @@ public class movement : NetworkBehaviour
     void Awake()
     {
         controller = GetComponent<NetworkCharacterControllerPrototypeCustom>();
+        hittedState = Animator.StringToHash("Base Layer.GetHit01_SwordAndShield");
         //a = GameObject.Find("MaleCharacterPolyart").GetComponent<Animator>();
     }
 
@@ -49,6 +51,11 @@ public class movement : NetworkBehaviour
                 }
             }
                 
+        }
+
+        AnimatorStateInfo currentState = a.GetCurrentAnimatorStateInfo(0);
+        if (currentState.fullPathHash == hittedState){
+            a.SetBool( "hit", false );
         }
     }
 
