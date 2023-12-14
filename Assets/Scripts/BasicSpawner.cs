@@ -12,12 +12,12 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
 
     private NetworkRunner _runner;
-    [SerializeField] private NetworkPlayer _playerPrefab;
+    [SerializeField] private PlayerState _playerPrefab;
     private bool _mouseButton0;
     private bool _isJump;
 
     // Player list
-    public Dictionary<PlayerPrefs, NetworkObject> playerList = new Dictionary<PlayerPrefs, NetworkObject>();
+    public Dictionary<PlayerRef, PlayerState> playerList = new Dictionary<PlayerRef, PlayerState>();
 
     // Start is called before the first frame update
     void Start()
@@ -59,12 +59,13 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             Vector3 spawnPosition = new Vector3((player.RawEncoded%runner.Config.Simulation.DefaultPlayers)*3,1,0);
             int id = player.PlayerId;
             
-            NetworkPlayer networkPlayer = runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player, (runner, spawnedPlayer)=>{});
+            PlayerState networkPlayer = runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player, (runner, spawnedPlayer)=>{});
+            playerList.Add(player, networkPlayer);
         }
     }
     
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player){
-
+        
     }
     public void OnInput(NetworkRunner runner, NetworkInput input){
             
@@ -80,16 +81,16 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         data.isJump = Input.GetKey(KeyCode.Space);
 
         // NetworkPlayer.Local is a static variable used to get the gameObject of local player 
-        if(NetworkPlayer.Local != null){
-            Vector2 moveVector = NetworkPlayer.Local.GetComponent<movement>().GetMovementVector();
+        if(PlayerState.Local != null){
+            Vector2 moveVector = PlayerState.Local.GetComponent<movement>().GetMovementVector();
             data.hInput = moveVector.x;
             data.vInput = moveVector.y;
 
-            Vector2 viewVector = NetworkPlayer.Local.GetComponent<camControl>().GetViewVector();
+            Vector2 viewVector = PlayerState.Local.GetComponent<camControl>().GetViewVector();
             data.xAxis = viewVector.x;
             data.yAxis = viewVector.y;
 
-            Transform hand = NetworkPlayer.Local.transform.Find("body").Find("hand");
+            Transform hand = PlayerState.Local.transform.Find("body").Find("hand");
             data.startingVelocity = hand.GetComponent<trajectory>().GetStartingVelocity();
         }
 

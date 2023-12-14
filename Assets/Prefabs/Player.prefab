@@ -457,7 +457,6 @@ GameObject:
   - component: {fileID: 7045510446345952636}
   - component: {fileID: 7045510446345952637}
   - component: {fileID: 775098606825226926}
-  - component: {fileID: 4191409379011189729}
   - component: {fileID: -3942501486282277601}
   - component: {fileID: 5824107158941425598}
   - component: {fileID: 6830288209987810185}
@@ -599,7 +598,6 @@ MonoBehaviour:
   - {fileID: 7045510446345952624}
   - {fileID: 7045510446345952638}
   - {fileID: 775098606825226926}
-  - {fileID: 4191409379011189729}
   - {fileID: -3942501486282277601}
   - {fileID: 5824107158941425598}
   - {fileID: 6830288209987810185}
@@ -654,19 +652,6 @@ MonoBehaviour:
   rotationSpeed: 15
   _IsGrounded: 0
   _Velocity: {x: 0, y: 0, z: 0}
---- !u!114 &4191409379011189729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7045510446345952630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02100bfa986a34964aed5e985515c525, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
 --- !u!114 &-3942501486282277601
 MonoBehaviour:
   m_ObjectHideFlags: 0

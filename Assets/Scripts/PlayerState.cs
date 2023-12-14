@@ -7,6 +7,9 @@ using TMPro;
 
 public class PlayerState : NetworkBehaviour
 {
+    // Original NetworkPlayer
+    public static PlayerState Local { get; set; }
+
     // public Material material;
     [Networked(OnChanged = nameof(OnHPChanged))]
     byte HP {get; set;}
@@ -95,9 +98,16 @@ public class PlayerState : NetworkBehaviour
         if(Object.HasInputAuthority)
         {
             RPC_SetNickName(PlayerPrefs.GetString("PlayerNickname"));
+            Local = this;
         }
     }
-
+    public void PlayerLeft(PlayerRef player)
+    {
+        if (player == Object.InputAuthority)
+        {
+            Runner.Despawn(Object);
+        }
+    }
 
 }
 
