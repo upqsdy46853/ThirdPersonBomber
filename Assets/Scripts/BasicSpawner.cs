@@ -16,6 +16,8 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     private bool _mouseButton0;
     private bool _isJump;
 
+    // Player list
+    public Dictionary<PlayerPrefs, NetworkObject> playerList = new Dictionary<PlayerPrefs, NetworkObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -56,8 +58,8 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             // Create a unique position for the player
             Vector3 spawnPosition = new Vector3((player.RawEncoded%runner.Config.Simulation.DefaultPlayers)*3,1,0);
             int id = player.PlayerId;
-            runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player, (runner, spawnedPlayer)=>{});
-
+            
+            NetworkPlayer networkPlayer = runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player, (runner, spawnedPlayer)=>{});
         }
     }
     
@@ -102,7 +104,13 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message) { }
     public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList) { }
     public void OnCustomAuthenticationResponse(NetworkRunner runner, Dictionary<string, object> data) { }
-    public void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken) { }
+    public async void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken) {
+        Debug.Log("OnHostMigration");
+        await runner.Shutdown(shutdownReason: ShutdownReason.HostMigration);
+
+        // StartHostMigration
+
+    }
     public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ArraySegment<byte> data) { }
     public void OnSceneLoadDone(NetworkRunner runner) { }
     public void OnSceneLoadStart(NetworkRunner runner) { }
