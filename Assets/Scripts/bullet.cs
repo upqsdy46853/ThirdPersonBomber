@@ -5,6 +5,9 @@ using Fusion;
 
 public class bullet : NetworkBehaviour
 {
+    [Header("Prefabs")]
+    public GameObject explosionParticleSystemPrefab;
+
     [Networked] private TickTimer life {get;set;}
     [Networked] private TickTimer safe {get;set;}
 
@@ -51,9 +54,21 @@ public class bullet : NetworkBehaviour
                 float distance = direction.magnitude;
                 bool blocked = Physics.Raycast(transform.position, direction.normalized, distance, groundLayer);
                 if(!blocked)
+                {
                     state.OnTakeDamage();
+                    Animator a = obj.transform.Find("MaleCharacterPolyart").GetComponent<Animator>();
+                    a.SetBool( "hit", true );
+                }
             }
         }
         Runner.Despawn(Object);
+    }
+
+    //When despawning the object we want to create a visual explosion
+    public override void Despawned(NetworkRunner runner, bool hasState)
+    {
+        MeshRenderer grenadeMesh = GetComponentInChildren<MeshRenderer>();
+
+        Instantiate(explosionParticleSystemPrefab, grenadeMesh.transform.position, Quaternion.identity);
     }
 }

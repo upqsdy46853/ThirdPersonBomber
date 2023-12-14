@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
+  explosionParticleSystemPrefab: {fileID: 3024599546387762972, guid: ceffd13b4b1fb0d4f9cfcfbcd60be52d, type: 3}
   collisionLayers:
     serializedVersion: 2
     m_Bits: 192
