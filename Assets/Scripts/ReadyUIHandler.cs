@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
+using TMPro;
 
 public class ReadyUIHandler : NetworkBehaviour
 {
+    public TextMeshProUGUI blueTeamMembers;
+    public TextMeshProUGUI redTeamMembers;
+
+    public Dictionary<PlayerRef, PlayerState> ReadTeamList = new Dictionary<PlayerRef, PlayerState>();
+    public Dictionary<PlayerRef, PlayerState> BlueTeamList = new Dictionary<PlayerRef, PlayerState>();
     // Start is called before the first frame update
     void Start()
     {
@@ -29,5 +35,11 @@ public class ReadyUIHandler : NetworkBehaviour
             DontDestroyOnLoad(gameObjectToTransfer);
         }
         Runner.SetActiveScene("Game");
+    }
+
+    public void UpdateMembers(Dictionary<PlayerRef, PlayerState> playerList){
+        
+        blueTeamMembers.text = "Player1\n";
+        redTeamMembers.text = "Player2\n";
     }
 }

@@ -18,11 +18,10 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     // Player list
     public Dictionary<PlayerRef, PlayerState> playerList = new Dictionary<PlayerRef, PlayerState>();
+    public ReadyUIHandler readyUIHandler;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Awake() {
+        readyUIHandler = FindObjectOfType<ReadyUIHandler>(true);
     }
 
     // Update is called once per frame
@@ -61,6 +60,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             
             PlayerState networkPlayer = runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player, (runner, spawnedPlayer)=>{});
             playerList.Add(player, networkPlayer);
+            readyUIHandler.UpdateMembers(playerList);
         }
     }
     
