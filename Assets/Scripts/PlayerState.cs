@@ -10,6 +10,8 @@ public class PlayerState : NetworkBehaviour
     // Original NetworkPlayer
     public static PlayerState Local { get; set; }
 
+    public GameObject amethyst;
+
     // public Material material;
     [Networked(OnChanged = nameof(OnHPChanged))]
     byte HP {get; set;}
@@ -43,6 +45,28 @@ public class PlayerState : NetworkBehaviour
             {
                 RPC_SetTeam(Color.blue);
             }
+        }
+    }
+
+    public override void FixedUpdateNetwork()
+    {
+        if (GetInput(out NetworkInputData data))
+        {
+            //transform.forward;
+
+            if (Object.HasStateAuthority && data.isThrow && amethystCount>0)
+            {
+                Runner.Spawn(amethyst,
+                transform.position + transform.forward*0.8f + transform.up*0.5f,
+                Quaternion.identity,
+                Object.InputAuthority,
+                (runner, o) =>
+                {
+                    o.GetComponent<Amethyst>().Init(transform.forward * 0.8f + transform.up * 0.5f);
+                });
+                amethystCount -= 1;
+            }
+
         }
     }
 

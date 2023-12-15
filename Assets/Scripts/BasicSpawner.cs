@@ -15,6 +15,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     [SerializeField] private PlayerState _playerPrefab;
     private bool _mouseButton0;
     private bool _isJump;
+    private bool _isThrow;
 
     // Player list
     public Dictionary<PlayerRef, PlayerState> playerList = new Dictionary<PlayerRef, PlayerState>();
@@ -30,6 +31,8 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         _mouseButton0 = _mouseButton0 || Input.GetMouseButton(0);
         if(Input.GetButtonDown("Jump"))
             _isJump = true;
+        if (Input.GetKeyDown(KeyCode.E))
+            _isThrow = true;
     }
 
     async void JoinRoom(GameMode mode)
@@ -75,6 +78,8 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         _mouseButton0 = false;
         data.isJump = _isJump;
         _isJump = false;
+        data.isThrow = _isThrow;
+        _isThrow = false;
 
         data.hInput = Input.GetAxis("Horizontal");
         data.vInput = Input.GetAxis("Vertical");

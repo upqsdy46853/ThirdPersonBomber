@@ -665,6 +665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
+  amethyst: {fileID: 6440792518188246117, guid: 89077ace329904de3a69c719a7638b01, type: 3}
   _Team: {r: 0, g: 0, b: 0, a: 0}
   MeshRenderer: {fileID: 7045510446533528416}
   _nickName:

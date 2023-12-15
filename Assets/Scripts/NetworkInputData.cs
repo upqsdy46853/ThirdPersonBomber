@@ -13,6 +13,6 @@ public struct NetworkInputData : INetworkInput
     public const byte MOUSEBUTTON1 = 0x01;
     public byte buttons;
     public Vector3 startingVelocity;
-
+    public NetworkBool isThrow;
 
 }
