@@ -69,9 +69,11 @@ public class ReadyUIHandler : NetworkBehaviour
         //    redTeamMembers.text += entry.Value.nickName;
         //    Debug.Log(entry.Value.nickName);
         //}
-        
+
         //RedTeamList.Clear();
         //BlueTeamList.Clear();
+        redTeamMembers.text = "";
+        blueTeamMembers.text = "";
         foreach (KeyValuePair<PlayerRef, PlayerState> entry in RedTeamList)
         {
             redTeamMembers.text += entry.Value.nickName;

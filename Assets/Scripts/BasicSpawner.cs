@@ -146,8 +146,13 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         // Find keys
         PlayerRef key = PlayerRef.None;
         foreach (KeyValuePair<PlayerRef, PlayerState> entry in playerList)
+        {
             if(entry.Value == player)
+            {
                 key = entry.Key;
+            }                   
+        }
+            
 
         // Remove From Current Team
         if(key && blueTeamPlayers.TryGetValue(key, out player))
@@ -162,15 +167,17 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         // Join New Team
         if(team == Color.red)
         {
-            redTeamPlayers.Add(key, player);
+            redTeamPlayers.Add(key, playerList[key]);
         }
         else if(team == Color.blue)
         {
-            blueTeamPlayers.Add(key, player);
+            blueTeamPlayers.Add(key, playerList[key]);
         }
         else
         {
             SetTeam(key, player);
         }
+
+        readyUIHandler.UpdateMembers(redTeamPlayers, blueTeamPlayers);
     }
 }
