@@ -19,11 +19,10 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     // Player list
     public Dictionary<PlayerRef, PlayerState> playerList = new Dictionary<PlayerRef, PlayerState>();
+    public Dictionary<PlayerRef, PlayerState> redTeamPlayers = new Dictionary<PlayerRef, PlayerState>();
+    public Dictionary<PlayerRef, PlayerState> blueTeamPlayers = new Dictionary<PlayerRef, PlayerState>();
     public ReadyUIHandler readyUIHandler;
 
-    void Awake() {
-        readyUIHandler = FindObjectOfType<ReadyUIHandler>(true);
-    }
 
     // Update is called once per frame
     void Update()
@@ -56,14 +55,21 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     }
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player){
+
+        if (!readyUIHandler)
+        {
+            readyUIHandler = FindObjectOfType<ReadyUIHandler>(true);
+        }
+
         if (runner.IsServer){
             // Create a unique position for the player
             Vector3 spawnPosition = new Vector3((player.RawEncoded%runner.Config.Simulation.DefaultPlayers)*3,1,0);
             int id = player.PlayerId;
             
             PlayerState networkPlayer = runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player, (runner, spawnedPlayer)=>{});
+            SetTeam(player, networkPlayer);
             playerList.Add(player, networkPlayer);
-            readyUIHandler.UpdateMembers(playerList);
+            readyUIHandler.UpdateMembers(redTeamPlayers, blueTeamPlayers);
         }
     }
     
@@ -120,4 +126,51 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ArraySegment<byte> data) { }
     public void OnSceneLoadDone(NetworkRunner runner) { }
     public void OnSceneLoadStart(NetworkRunner runner) { }
+
+    private void SetTeam(PlayerRef playerRef, PlayerState player)
+    {
+        if(redTeamPlayers.Count < blueTeamPlayers.Count)
+        {
+            player.RPC_SetTeam(Color.red);
+            redTeamPlayers.Add(playerRef, player);
+        }
+        else
+        {
+            player.RPC_SetTeam(Color.blue);
+            blueTeamPlayers.Add(playerRef, player);
+        }
+        
+    }
+    public void ChangeTeam(PlayerState player, Color team)
+    {
+        // Find keys
+        PlayerRef key = PlayerRef.None;
+        foreach (KeyValuePair<PlayerRef, PlayerState> entry in playerList)
+            if(entry.Value == player)
+                key = entry.Key;
+
+        // Remove From Current Team
+        if(key && blueTeamPlayers.TryGetValue(key, out player))
+        {
+            blueTeamPlayers.Remove(key);
+        }
+        if (key && redTeamPlayers.TryGetValue(key, out player))
+        {
+            redTeamPlayers.Remove(key);
+        }
+
+        // Join New Team
+        if(team == Color.red)
+        {
+            redTeamPlayers.Add(key, player);
+        }
+        else if(team == Color.blue)
+        {
+            blueTeamPlayers.Add(key, player);
+        }
+        else
+        {
+            SetTeam(key, player);
+        }
+    }
 }

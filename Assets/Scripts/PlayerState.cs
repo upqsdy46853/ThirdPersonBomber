@@ -27,10 +27,13 @@ public class PlayerState : NetworkBehaviour
     [Networked(OnChanged = nameof(OnAmethystChanged))]
     public int amethystCount {get; set;}
 
+    private BasicSpawner _basicSpawner;
+
     void Start()
     {
         HP = 10;
         amethystCount = 0;
+        _basicSpawner = FindObjectOfType<BasicSpawner>(true);
     }
 
     void Update()
@@ -40,10 +43,12 @@ public class PlayerState : NetworkBehaviour
             if(Input.GetKeyDown(KeyCode.R))
             {
                 RPC_SetTeam(Color.red);
+                _basicSpawner.ChangeTeam(this, Color.red);
             }
             if(Input.GetKeyDown(KeyCode.B))
             {
                 RPC_SetTeam(Color.blue);
+                _basicSpawner.ChangeTeam(this, Color.blue);
             }
         }
     }
