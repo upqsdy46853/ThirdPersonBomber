@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 
 public class MenuUIHandler : MonoBehaviour
 {
     public TMP_InputField inputField;
+    public Button button;
+    public TextMeshProUGUI buttonText;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,8 @@ public class MenuUIHandler : MonoBehaviour
     {
         PlayerPrefs.SetString("PlayerNickname", inputField.text);
         PlayerPrefs.Save();
+        button.interactable = false;
+        buttonText.text = "Joining...";
     }
 
 }

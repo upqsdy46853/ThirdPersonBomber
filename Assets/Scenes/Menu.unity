@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerPrefab: {fileID: -3942501486282277601, guid: 7f9b9ba770af847ecbd734786b189f44, type: 3}
+  readyUIHandler: {fileID: 0}
 --- !u!4 &304754360
 Transform:
   m_ObjectHideFlags: 0
@@ -727,6 +728,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputField: {fileID: 1518584407}
+  button: {fileID: 1624963341}
+  buttonText: {fileID: 454227715}
 --- !u!1 &1518584405
 GameObject:
   m_ObjectHideFlags: 0
