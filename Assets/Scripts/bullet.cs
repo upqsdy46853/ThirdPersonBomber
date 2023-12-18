@@ -69,6 +69,7 @@ public class bullet : NetworkBehaviour
     {
         MeshRenderer grenadeMesh = GetComponentInChildren<MeshRenderer>();
 
-        Instantiate(explosionParticleSystemPrefab, grenadeMesh.transform.position, Quaternion.identity);
+        GameObject particle = Instantiate(explosionParticleSystemPrefab, grenadeMesh.transform.position, Quaternion.identity);
+        Destroy(particle, 5.0f);
     }
 }
