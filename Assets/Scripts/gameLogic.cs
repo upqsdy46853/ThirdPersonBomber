@@ -34,13 +34,13 @@ public class gameLogic : NetworkBehaviour
     {
         if (has_set_timer == false)
         {
-            gameTime = TickTimer.CreateFromSeconds(Runner, 100.0f);
+            gameTime = TickTimer.CreateFromSeconds(Runner, 1000.0f);
             has_set_timer = true;
         }
         red_amethyst_count = red_amethystcontroller.collect_count;
         blue_amethyst_count = blue_amethystcontroller.collect_count;
 
-        Debug.Log("timer :" + gameTime.RemainingTime(Runner).ToString());
+        Debug.Log("timer :" + (int)gameTime.RemainingTime(Runner));
         if (gameTime.ExpiredOrNotRunning(Runner))
         {
             is_gameover = true;

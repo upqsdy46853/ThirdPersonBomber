@@ -28,10 +28,11 @@ public class PlayerState : NetworkBehaviour
     public int amethystCount {get; set;}
 
     private BasicSpawner _basicSpawner;
-
+    private byte maxHP;
     void Start()
     {
-        HP = 10;
+        maxHP = 10;
+        HP = maxHP;
         amethystCount = 0;
         _basicSpawner = FindObjectOfType<BasicSpawner>(true);
     }
@@ -61,15 +62,7 @@ public class PlayerState : NetworkBehaviour
 
             if (Object.HasStateAuthority && data.isThrow && amethystCount>0)
             {
-                Runner.Spawn(amethyst,
-                transform.position + transform.forward*0.8f + transform.up*0.5f,
-                Quaternion.identity,
-                Object.InputAuthority,
-                (runner, o) =>
-                {
-                    o.GetComponent<Amethyst>().Init(transform.forward * 0.8f + transform.up * 0.5f);
-                });
-                amethystCount -= 1;
+                throw_amethyst();
             }
 
         }
@@ -80,6 +73,21 @@ public class PlayerState : NetworkBehaviour
         if (Object.HasStateAuthority)
         {
             HP -= 1;
+            if (HP <= 0 || HP == 255)
+            {
+                if (gameObject.TryGetComponent<movement>(out var movement))
+                {
+                    HP = maxHP;
+                    // throw all amethyst
+                    while(amethystCount>0)
+                    {
+                        throw_amethyst(true);
+                        Debug.Log("throw amethyst");
+                    }
+                    // debug: cant teleport to specified place
+                    movement.teleport(new Vector3(0.0f, 1.0f, 0.0f));
+                }
+            }
         }
     }
 
@@ -138,6 +146,25 @@ public class PlayerState : NetworkBehaviour
         {
             Runner.Despawn(Object);
         }
+    }
+
+    public void throw_amethyst(bool use_rand = false)
+    {
+        Vector3 scale = new Vector3(1.0f, 1.0f, 1.0f);
+        if (use_rand)
+        {
+            scale = new Vector3(Random.Range(-1,1), Random.Range(-1, 1), Random.Range(-1, 1));
+        }
+
+        Runner.Spawn(amethyst,
+                transform.position + Vector3.Scale((transform.forward * 0.8f + transform.up * 0.5f), scale),
+                Quaternion.identity,
+                Object.InputAuthority,
+                (runner, o) =>
+                {
+                    o.GetComponent<Amethyst>().Init(transform.forward * 0.8f + transform.up * 0.5f);
+                });
+        amethystCount -= 1;
     }
 
 }
