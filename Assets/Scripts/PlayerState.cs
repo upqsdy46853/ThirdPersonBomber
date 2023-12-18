@@ -153,7 +153,7 @@ public class PlayerState : NetworkBehaviour
         Vector3 scale = new Vector3(1.0f, 1.0f, 1.0f);
         if (use_rand)
         {
-            scale = new Vector3(Random.Range(-1,1), Random.Range(-1, 1), Random.Range(-1, 1));
+            scale = new Vector3(Random.Range(-1,1), Random.Range(0.5f, 1), Random.Range(-1, 1));
         }
 
         Runner.Spawn(amethyst,

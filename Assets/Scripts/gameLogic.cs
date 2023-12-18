@@ -34,7 +34,7 @@ public class gameLogic : NetworkBehaviour
     {
         if (has_set_timer == false)
         {
-            gameTime = TickTimer.CreateFromSeconds(Runner, 1000.0f);
+            gameTime = TickTimer.CreateFromSeconds(Runner, 180.0f);
             has_set_timer = true;
         }
         red_amethyst_count = red_amethystcontroller.collect_count;
