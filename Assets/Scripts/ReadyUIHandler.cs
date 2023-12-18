@@ -9,14 +9,22 @@ public class ReadyUIHandler : NetworkBehaviour
     public TextMeshProUGUI blueTeamMembers;
     public TextMeshProUGUI redTeamMembers;
 
+    [Networked(OnChanged = nameof(OnListChanged))]
+    public NetworkString<_16> redTeamString { get; set; }
+    public NetworkString<_16> blueTeamString { get; set; }
+
+    private string _redLocalString;
+    private string _blueLocalString;
+
     // public Dictionary<PlayerRef, PlayerState> RedTeamList = new Dictionary<PlayerRef, PlayerState>();
     // public Dictionary<PlayerRef, PlayerState> BlueTeamList = new Dictionary<PlayerRef, PlayerState>();
 
     private Dictionary<PlayerRef, PlayerState> _allPlayerList;
     // Start is called before the first frame update
-    void Start()
+    static void OnListChanged(Changed<ReadyUIHandler> changed)
     {
-        
+        changed.Behaviour.blueTeamMembers.text = changed.Behaviour.blueTeamString.ToString();
+        changed.Behaviour.redTeamMembers.text = changed.Behaviour.redTeamString.ToString();
     }
 
     // Update is called once per frame
@@ -72,17 +80,19 @@ public class ReadyUIHandler : NetworkBehaviour
 
         //RedTeamList.Clear();
         //BlueTeamList.Clear();
-        redTeamMembers.text = "";
-        blueTeamMembers.text = "";
+        _redLocalString = "";
+        _blueLocalString = "";
         foreach (KeyValuePair<PlayerRef, PlayerState> entry in RedTeamList)
         {
-            redTeamMembers.text += entry.Value.nickName;
-            redTeamMembers.text += "\n";
+            _redLocalString += entry.Value.nickName;
+            _redLocalString += "\n";
         }
         foreach (KeyValuePair<PlayerRef, PlayerState> entry in BlueTeamList)
         {
-            blueTeamMembers.text += entry.Value.nickName;
-            blueTeamMembers.text += "\n";
+            _blueLocalString += entry.Value.nickName;
+            _blueLocalString += "\n";
         }
+        redTeamString = _redLocalString;
+        blueTeamString = _blueLocalString;
     }
 }

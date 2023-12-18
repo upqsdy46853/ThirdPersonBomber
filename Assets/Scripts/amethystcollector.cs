@@ -12,7 +12,10 @@ public class amethystcollector : NetworkBehaviour
     {
         collect_count = 0;
     }
-
+    public int getCount()
+    {
+        return collect_count;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -39,7 +42,7 @@ public class amethystcollector : NetworkBehaviour
     public void on_collect_remote(int count)
     {
         collect_count = count;
-        Debug.Log(collect_count);
+        Debug.Log("OnContChanged" + collect_count);
     }
     static void OnCountChanged(Changed<amethystcollector> changed)
     {

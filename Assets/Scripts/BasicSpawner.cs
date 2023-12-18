@@ -155,11 +155,11 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             
 
         // Remove From Current Team
-        if(key && blueTeamPlayers.TryGetValue(key, out player))
+        if(key.IsValid && blueTeamPlayers.TryGetValue(key, out player))
         {
             blueTeamPlayers.Remove(key);
         }
-        if (key && redTeamPlayers.TryGetValue(key, out player))
+        if (key.IsValid && redTeamPlayers.TryGetValue(key, out player))
         {
             redTeamPlayers.Remove(key);
         }
