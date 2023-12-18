@@ -78,7 +78,9 @@ public class PlayerState : NetworkBehaviour
     public void OnTakeDamage()
     {
         if (Object.HasStateAuthority)
+        {
             HP -= 1;
+        }
     }
 
     static void OnHPChanged(Changed<PlayerState> changed)

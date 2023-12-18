@@ -208,6 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
+  _collect_count: 0
 --- !u!1 &584562203
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,6 +813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
+  _collect_count: 0
 --- !u!114 &1021461633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1152,6 +1154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1344204429}
   - component: {fileID: 1344204428}
+  - component: {fileID: 1344204430}
   m_Layer: 0
   m_Name: GameLogicManager
   m_TagString: Untagged
@@ -1171,6 +1174,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3e426985869484385a403c699f24c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  _is_gameover:
+    _value: 0
+  red_amethystcontroller: {fileID: 397414442}
+  blue_amethystcontroller: {fileID: 1021461632}
+  red_amethyst_count: 0
+  blue_amethyst_count: 0
 --- !u!4 &1344204429
 Transform:
   m_ObjectHideFlags: 0
@@ -1188,6 +1198,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1344204430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344204427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2561
+  NetworkGuid:
+    RawGuidValue: f5fbd60dc4434a4c9876f4fa5857058d
+  NestedObjects:
+  - {fileID: 1021461633}
+  - {fileID: 397414439}
+  NetworkedBehaviours:
+  - {fileID: 1344204428}
+  SimulationBehaviours: []
 --- !u!1 &1572018670
 GameObject:
   m_ObjectHideFlags: 0

@@ -64,6 +64,9 @@ public class movement : NetworkBehaviour
         return new Vector2(hInput, vInput);
     }
 
-
+    public void teleport(Vector3 position)
+    {
+        controller.TeleportToPosition(position);
+    }
     
 }

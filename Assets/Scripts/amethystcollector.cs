@@ -6,7 +6,7 @@ using Fusion;
 public class amethystcollector : NetworkBehaviour
 {
     [Networked(OnChanged = nameof(OnCountChanged))]
-    int collect_count { get; set; }
+    public int collect_count { get; set; }
     // Start is called before the first frame update
     void Start()
     {
