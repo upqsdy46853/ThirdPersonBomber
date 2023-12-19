@@ -21,7 +21,7 @@ public class FinalUIHandler : NetworkBehaviour
     {
         _getWinner = PlayerPrefs.GetString("winner");
         _getRedPoint = PlayerPrefs.GetInt("redPoint");
-        _getBluePoint = PlayerPrefs.GetInt("bluePoitn");
+        _getBluePoint = PlayerPrefs.GetInt("bluePoint");
 
         if(_getWinner == "red")
         {
