@@ -62,7 +62,7 @@ public class trajectory : NetworkBehaviour
             {
                 if ((data.buttons & NetworkInputData.MOUSEBUTTON1) != 0)
                 {
-                    delay = TickTimer.CreateFromSeconds(Runner, 0.5f);
+                    delay = TickTimer.CreateFromSeconds(Runner, 2.0f);
                     Runner.Spawn(bullet,
                     transform.position,
                     Quaternion.identity,
