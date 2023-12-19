@@ -53,33 +53,6 @@ public class ReadyUIHandler : NetworkBehaviour
     public void UpdateMembers(Dictionary<PlayerRef, PlayerState> RedTeamList, Dictionary<PlayerRef, PlayerState> BlueTeamList)
     {
 
-
-        // _allPlayerList = playerList;
-
-        //blueTeamMembers.text = "";
-        //redTeamMembers.text = "";
-
-        //foreach (KeyValuePair<PlayerRef, PlayerState> entry in playerList)
-        //{
-        //    Color team = entry.Value.Team;
-        //    if (playerList.TryGetValue() && team == Color.red)
-        //    {
-        //        RedTeamList.Add(entry.Key, entry.Value);
-        //    }
-        //    else if (team == Color.blue)
-        //    {
-        //        BlueTeamList.Add(entry.Key, entry.Value);
-        //    }
-        //    else
-        //    {
-        //        RedTeamList.Add(entry.Key, entry.Value);
-        //    }
-        //    redTeamMembers.text += entry.Value.nickName;
-        //    Debug.Log(entry.Value.nickName);
-        //}
-
-        //RedTeamList.Clear();
-        //BlueTeamList.Clear();
         _redLocalString = "";
         _blueLocalString = "";
         foreach (KeyValuePair<PlayerRef, PlayerState> entry in RedTeamList)

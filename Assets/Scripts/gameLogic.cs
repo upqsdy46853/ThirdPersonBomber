@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
+using TMPro;
 
 
 public class gameLogic : NetworkBehaviour
 {
+    private float _gameTime = 30.0f;
     [Networked] private TickTimer gameTime { get; set; }
     bool has_set_timer = false;
+    public TextMeshProUGUI timerText;
     [Networked] public NetworkBool is_gameover { get; set; }
 
     public amethystcollector red_amethystcontroller;
@@ -34,13 +37,16 @@ public class gameLogic : NetworkBehaviour
     {
         if (has_set_timer == false)
         {
-            gameTime = TickTimer.CreateFromSeconds(Runner, 180.0f);
+            gameTime = TickTimer.CreateFromSeconds(Runner, _gameTime);
             has_set_timer = true;
         }
         red_amethyst_count = red_amethystcontroller.collect_count;
         blue_amethyst_count = blue_amethystcontroller.collect_count;
 
-        Debug.Log("timer :" + (int)gameTime.RemainingTime(Runner));
+        int remainingTime = (int)gameTime.RemainingTime(Runner);
+        Debug.Log("timer :" + remainingTime);
+        timerText.text = string.Format("{0}:{1:00}", remainingTime / 60, remainingTime % 60);
+
         if (gameTime.ExpiredOrNotRunning(Runner))
         {
             is_gameover = true;
@@ -59,6 +65,13 @@ public class gameLogic : NetworkBehaviour
             // do something, for example, show winning text on canvas etc.
             // reset timescale back to 1.0 if needed
             // Time.timeScale = 1.0f;
+
+            Runner.SetActiveScene("Final");
+            Time.timeScale = 1.0f;
+            PlayerPrefs.SetString("winner", winner);
+            PlayerPrefs.SetInt("redPoint", red_amethyst_count);
+            PlayerPrefs.SetInt("bluePoint", blue_amethyst_count);
+            Debug.Log("Time Scale 1");
         }
     }
 }
