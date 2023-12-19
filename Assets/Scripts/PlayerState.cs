@@ -75,18 +75,32 @@ public class PlayerState : NetworkBehaviour
             HP -= 1;
             if (HP <= 0 || HP == 255)
             {
-                if (gameObject.TryGetComponent<movement>(out var movement))
-                {
-                    HP = maxHP;
-                    // throw all amethyst
-                    while(amethystCount>0)
-                    {
-                        throw_amethyst(true);
-                        Debug.Log("throw amethyst");
-                    }
-                    // debug: cant teleport to specified place
-                    movement.teleport(new Vector3(0.0f, 1.0f, 0.0f));
+                Respawn();
+            }
+        }
+    }
+
+    public void Respawn()
+    {
+        if (gameObject.TryGetComponent<movement>(out var movement))
+        {
+            HP = maxHP;
+            // throw all amethyst
+            while(amethystCount>0)
+            {
+                throw_amethyst(true);
+                Debug.Log("throw amethyst");
+            }
+            // debug: cant teleport to specified place
+            if(gameObject.TryGetComponent<CharacterController>(out var cc)){
+                cc.enabled = false;
+                if(Team == Color.red){
+                    movement.teleport(new Vector3(13.0f, 1.0f, Random.Range(-7.0f, 7.0f)));
                 }
+                else{
+                    movement.teleport(new Vector3(-15.0f, 1.0f, Random.Range(-7.0f, 7.0f)));
+                }
+                cc.enabled = true;
             }
         }
     }

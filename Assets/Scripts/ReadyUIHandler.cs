@@ -45,6 +45,8 @@ public class ReadyUIHandler : NetworkBehaviour
         foreach(GameObject gameObjectToTransfer in gameObjectsToTransfer)
         {
             DontDestroyOnLoad(gameObjectToTransfer);
+            if(gameObjectToTransfer.TryGetComponent<PlayerState>(out var state))
+                state.Respawn();
         }
         Runner.SetActiveScene("Game");
         enabled = false;
