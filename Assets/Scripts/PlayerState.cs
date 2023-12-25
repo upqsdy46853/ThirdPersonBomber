@@ -35,6 +35,12 @@ public class PlayerState : NetworkBehaviour
         HP = maxHP;
         amethystCount = 0;
         _basicSpawner = FindObjectOfType<BasicSpawner>(true);
+
+        System.Random r = new System.Random();
+        if (r.Next() % 2 == 0)
+            Team = Color.red;
+        else
+            Team = Color.blue;
     }
 
     void Update()
@@ -44,12 +50,10 @@ public class PlayerState : NetworkBehaviour
             if(Input.GetKeyDown(KeyCode.R))
             {
                 RPC_SetTeam(Color.red);
-                _basicSpawner.ChangeTeam(this, Color.red);
             }
             if(Input.GetKeyDown(KeyCode.B))
             {
                 RPC_SetTeam(Color.blue);
-                _basicSpawner.ChangeTeam(this, Color.blue);
             }
         }
     }

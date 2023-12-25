@@ -9,23 +9,14 @@ public class ReadyUIHandler : NetworkBehaviour
     public TextMeshProUGUI blueTeamMembers;
     public TextMeshProUGUI redTeamMembers;
 
-    [Networked(OnChanged = nameof(OnListChanged))]
-    public NetworkString<_16> redTeamString { get; set; }
-    public NetworkString<_16> blueTeamString { get; set; }
-
     private string _redLocalString;
     private string _blueLocalString;
 
-    // public Dictionary<PlayerRef, PlayerState> RedTeamList = new Dictionary<PlayerRef, PlayerState>();
-    // public Dictionary<PlayerRef, PlayerState> BlueTeamList = new Dictionary<PlayerRef, PlayerState>();
+    [Networked]
+    private int _blueTeamCount { get; set; }
+    [Networked]
+    private int _redTeamCount { get; set; }
 
-    private Dictionary<PlayerRef, PlayerState> _allPlayerList;
-    // Start is called before the first frame update
-    static void OnListChanged(Changed<ReadyUIHandler> changed)
-    {
-        changed.Behaviour.blueTeamMembers.text = changed.Behaviour.blueTeamString.ToString();
-        changed.Behaviour.redTeamMembers.text = changed.Behaviour.redTeamString.ToString();
-    }
 
     // Update is called once per frame
     void Update()
@@ -34,8 +25,30 @@ public class ReadyUIHandler : NetworkBehaviour
         {
             StartGame();
         }
-        // if (_allPlayerList != null)
-            // UpdateMembers(_allPlayerList);
+
+        // Member List
+        _redLocalString = "";
+        _blueLocalString = "";
+        _blueTeamCount = 0;
+        _redTeamCount = 0;
+        PlayerState[] allPlayers = GameObject.FindObjectsOfType<PlayerState>();
+        foreach(PlayerState player in allPlayers)
+        {
+            if(player.Team == Color.blue)
+            {
+                _blueLocalString += player.nickName;
+                _blueLocalString += "\n";
+                _blueTeamCount += 1;
+            }
+            else if(player.Team == Color.red)
+            {
+                _redLocalString += player.nickName;
+                _redLocalString += "\n";
+                _redTeamCount += 1;
+            }
+        }
+        blueTeamMembers.text = _blueLocalString;
+        redTeamMembers.text = _redLocalString;
     }
 
     public void StartGame()
@@ -52,22 +65,12 @@ public class ReadyUIHandler : NetworkBehaviour
         enabled = false;
     }
 
-    public void UpdateMembers(Dictionary<PlayerRef, PlayerState> RedTeamList, Dictionary<PlayerRef, PlayerState> BlueTeamList)
+    public int getBlueTeamNum()
     {
-
-        _redLocalString = "";
-        _blueLocalString = "";
-        foreach (KeyValuePair<PlayerRef, PlayerState> entry in RedTeamList)
-        {
-            _redLocalString += entry.Value.nickName;
-            _redLocalString += "\n";
-        }
-        foreach (KeyValuePair<PlayerRef, PlayerState> entry in BlueTeamList)
-        {
-            _blueLocalString += entry.Value.nickName;
-            _blueLocalString += "\n";
-        }
-        redTeamString = _redLocalString;
-        blueTeamString = _blueLocalString;
+        return _blueTeamCount;
+    }
+    public int getRedTeamNum()
+    {
+        return _redTeamCount;
     }
 }

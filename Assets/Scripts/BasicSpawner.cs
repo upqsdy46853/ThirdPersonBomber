@@ -17,10 +17,6 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     private bool _isJump;
     private bool _isThrow;
 
-    // Player list
-    public Dictionary<PlayerRef, PlayerState> playerList = new Dictionary<PlayerRef, PlayerState>();
-    public Dictionary<PlayerRef, PlayerState> redTeamPlayers = new Dictionary<PlayerRef, PlayerState>();
-    public Dictionary<PlayerRef, PlayerState> blueTeamPlayers = new Dictionary<PlayerRef, PlayerState>();
     public ReadyUIHandler readyUIHandler;
 
 
@@ -67,9 +63,6 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             int id = player.PlayerId;
             
             PlayerState networkPlayer = runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player, (runner, spawnedPlayer)=>{});
-            SetTeam(player, networkPlayer);
-            playerList.Add(player, networkPlayer);
-            readyUIHandler.UpdateMembers(redTeamPlayers, blueTeamPlayers);
         }
     }
     
@@ -126,58 +119,5 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ArraySegment<byte> data) { }
     public void OnSceneLoadDone(NetworkRunner runner) { }
     public void OnSceneLoadStart(NetworkRunner runner) { }
-
-    private void SetTeam(PlayerRef playerRef, PlayerState player)
-    {
-        if(redTeamPlayers.Count < blueTeamPlayers.Count)
-        {
-            player.RPC_SetTeam(Color.red);
-            redTeamPlayers.Add(playerRef, player);
-        }
-        else
-        {
-            player.RPC_SetTeam(Color.blue);
-            blueTeamPlayers.Add(playerRef, player);
-        }
-        
-    }
-    public void ChangeTeam(PlayerState player, Color team)
-    {
-        // Find keys
-        PlayerRef key = PlayerRef.None;
-        foreach (KeyValuePair<PlayerRef, PlayerState> entry in playerList)
-        {
-            if(entry.Value == player)
-            {
-                key = entry.Key;
-            }                   
-        }
-            
-
-        // Remove From Current Team
-        if(key.IsValid && blueTeamPlayers.TryGetValue(key, out player))
-        {
-            blueTeamPlayers.Remove(key);
-        }
-        if (key.IsValid && redTeamPlayers.TryGetValue(key, out player))
-        {
-            redTeamPlayers.Remove(key);
-        }
-
-        // Join New Team
-        if(team == Color.red)
-        {
-            redTeamPlayers.Add(key, playerList[key]);
-        }
-        else if(team == Color.blue)
-        {
-            blueTeamPlayers.Add(key, playerList[key]);
-        }
-        else
-        {
-            SetTeam(key, player);
-        }
-
-        readyUIHandler.UpdateMembers(redTeamPlayers, blueTeamPlayers);
-    }
+    
 }
