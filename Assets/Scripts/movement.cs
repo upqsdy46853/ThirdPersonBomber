@@ -6,6 +6,8 @@ using Fusion;
 public class movement : NetworkBehaviour
 {
     public float moveSpeed = 3;
+    public Animator a_m;
+    public Animator a_f;
     public Animator a;
     private int hittedState;
     [HideInInspector] public Vector3 dir;
@@ -20,6 +22,7 @@ public class movement : NetworkBehaviour
     {
         controller = GetComponent<NetworkCharacterControllerPrototypeCustom>();
         hittedState = Animator.StringToHash("Base Layer.GetHit01_SwordAndShield");
+        a = a_f;
         //a = GameObject.Find("MaleCharacterPolyart").GetComponent<Animator>();
     }
 
@@ -27,6 +30,19 @@ public class movement : NetworkBehaviour
     {
         hInput = Input.GetAxis("Horizontal");
         vInput = Input.GetAxis("Vertical");
+        if ( gameObject.GetComponent<PlayerState>().Team == Color.red )
+        {
+            gameObject.transform.Find("MaleCharacterPolyart").gameObject.SetActive(true);
+            gameObject.transform.Find("FemaleCharacterPolyart").gameObject.SetActive(false);
+            a = a_m;
+        }
+
+        else
+        {
+            gameObject.transform.Find("MaleCharacterPolyart").gameObject.SetActive(false);
+            gameObject.transform.Find("FemaleCharacterPolyart").gameObject.SetActive(true);
+            a = a_f;
+        }
     }
 
     public override void FixedUpdateNetwork() {

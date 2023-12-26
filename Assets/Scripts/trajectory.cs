@@ -18,6 +18,8 @@ public class trajectory : NetworkBehaviour
     [Networked] private TickTimer delay { get; set; }
     Vector3 startingVelocity;
     public Animator a;
+    public Animator a_m;
+    public Animator a_f;
 
 
 
@@ -26,6 +28,7 @@ public class trajectory : NetworkBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         mainCamera = Camera.main;
         DontDestroyOnLoad(mainCamera);
+        a = a_f;
     }
 
     // Update is called once per frame
