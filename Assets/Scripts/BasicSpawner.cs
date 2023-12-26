@@ -23,11 +23,13 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     // Update is called once per frame
     void Update()
     {
-        _mouseButton0 = _mouseButton0 || Input.GetMouseButton(0);
-        if(Input.GetButtonDown("Jump"))
-            _isJump = true;
-        if (Input.GetKeyDown(KeyCode.E))
-            _isThrow = true;
+        if(PlayerState.Local != null && PlayerState.Local.GetComponent<PlayerState>().HP > 0){
+            _mouseButton0 = _mouseButton0 || Input.GetMouseButton(0);
+            if(Input.GetButtonDown("Jump"))
+                _isJump = true;
+            if (Input.GetKeyDown(KeyCode.E))
+                _isThrow = true;
+        }
     }
 
     async void JoinRoom(GameMode mode)
@@ -80,9 +82,6 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         data.isThrow = _isThrow;
         _isThrow = false;
 
-        data.hInput = Input.GetAxis("Horizontal");
-        data.vInput = Input.GetAxis("Vertical");
-        data.isJump = Input.GetKey(KeyCode.Space);
 
         // NetworkPlayer.Local is a static variable used to get the gameObject of local player 
         if(PlayerState.Local != null){

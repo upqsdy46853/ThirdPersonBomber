@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d282ddc49cb100e4e956f69fa3037246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reverFace: 0
 --- !u!1 &698203080026315846
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,6 +680,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   amethyst: {fileID: 6440792518188246117, guid: 89077ace329904de3a69c719a7638b01, type: 3}
+  _HP: 0
   _Team: {r: 0, g: 0, b: 0, a: 0}
   MeshRenderer: {fileID: 7045510446533528416}
   _nickName:
@@ -734,7 +736,7 @@ MonoBehaviour:
     _value: 0
     _inverse: 0
     _hash: -814817977
-  StateHashes: 00000000d253e5d61264a5ae74c37e9447705ba328a981077af3fe2e9852a2d1b9e28515ac64e5328dd4c2f6
+  StateHashes: 00000000d253e5d61264a5ae74c37e9447705ba328a981077af3fe2e9852a2d1b9e28515ac64e5328dd4c2f653b5481dde873733734c34053b2eca42
   TriggerHashes: 00000000
 --- !u!1 &7045510446533528418
 GameObject:

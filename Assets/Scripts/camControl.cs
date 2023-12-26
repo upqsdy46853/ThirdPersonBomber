@@ -17,8 +17,10 @@ public class camControl : NetworkBehaviour
     }
 
     void Update(){
-        xAxis.Update(Time.deltaTime);
-        yAxis.Update(Time.deltaTime);
+        if(GetComponent<PlayerState>().HP > 0){
+            xAxis.Update(Time.deltaTime);
+            yAxis.Update(Time.deltaTime);
+        }
     }
 
     public override void FixedUpdateNetwork() {

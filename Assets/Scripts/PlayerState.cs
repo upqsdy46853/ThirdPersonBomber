@@ -14,7 +14,7 @@ public class PlayerState : NetworkBehaviour
 
     // public Material material;
     [Networked(OnChanged = nameof(OnHPChanged))]
-    byte HP {get; set;}
+    public byte HP {get; set;}
 
     [Networked(OnChanged = nameof(OnTeamChanged))]
     public Color Team { get; set; }
@@ -29,9 +29,15 @@ public class PlayerState : NetworkBehaviour
 
     private BasicSpawner _basicSpawner;
     private byte maxHP;
+
+    private float respawnCD;
+    Animator a;
+
+
     void Start()
     {
-        maxHP = 10;
+        maxHP = 2;
+        respawnCD = 3.0f;
         HP = maxHP;
         amethystCount = 0;
         _basicSpawner = FindObjectOfType<BasicSpawner>(true);
@@ -41,6 +47,8 @@ public class PlayerState : NetworkBehaviour
             Team = Color.red;
         else
             Team = Color.blue;
+
+        a = transform.Find("MaleCharacterPolyart").GetComponent<Animator>();
     }
 
     void Update()
@@ -74,18 +82,31 @@ public class PlayerState : NetworkBehaviour
 
     public void OnTakeDamage()
     {
-        if (Object.HasStateAuthority)
+        HP -= 1;
+        if (HP <= 0 || HP == 255)
         {
-            HP -= 1;
-            if (HP <= 0 || HP == 255)
-            {
-                Respawn();
+            a.SetBool("die", true);
+            if(HasInputAuthority){
+                transform.Find("landingPoint").gameObject.SetActive(false);
+                transform.Find("body").Find("hand").GetComponent<LineRenderer>().enabled = false;
             }
+            StartCoroutine(Respawn());
+        }
+        else
+        {
+            a.SetBool("hit", true);
         }
     }
 
-    public void Respawn()
+    public IEnumerator Respawn()
     {
+        yield return new WaitForSeconds(respawnCD);
+        a.SetBool("die", false);
+        if(HasInputAuthority){
+            transform.Find("landingPoint").gameObject.SetActive(true);
+            transform.Find("body").Find("hand").GetComponent<LineRenderer>().enabled = true;
+        }
+        
         if (gameObject.TryGetComponent<movement>(out var movement))
         {
             HP = maxHP;

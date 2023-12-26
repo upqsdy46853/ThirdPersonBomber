@@ -25,15 +25,17 @@ public class movement : NetworkBehaviour
 
     void Update()
     {
-        hInput = Input.GetAxis("Horizontal");
-        vInput = Input.GetAxis("Vertical");
+        if(GetComponent<PlayerState>().HP > 0){
+            hInput = Input.GetAxis("Horizontal");
+            vInput = Input.GetAxis("Vertical");
+        }
+        else{
+            hInput = 0;
+            vInput = 0;
+        }
     }
 
     public override void FixedUpdateNetwork() {
-
-        //if (isdead)
-        //    return;
-
 
         if (GetInput(out NetworkInputData data)){
             dir = transform.forward * data.vInput * moveSpeed + transform.right * data.hInput * moveSpeed;

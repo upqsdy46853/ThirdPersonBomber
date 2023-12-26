@@ -56,8 +56,6 @@ public class bullet : NetworkBehaviour
                 if(!blocked)
                 {
                     state.OnTakeDamage();
-                    Animator a = obj.transform.Find("MaleCharacterPolyart").GetComponent<Animator>();
-                    a.SetBool( "hit", true );
                 }
             }
         }
