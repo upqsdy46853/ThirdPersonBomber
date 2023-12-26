@@ -113,6 +113,7 @@ public class PlayerState : NetworkBehaviour
     {
         //a.SetBool( "hit", true );
         Debug.Log(changed.Behaviour.HP);
+        Debug.Log(Local.getHP());
     }
 
     public void OnGetAmethyst()
@@ -185,5 +186,9 @@ public class PlayerState : NetworkBehaviour
         amethystCount -= 1;
     }
 
+    public float getHP()
+    {
+        return (float)HP / (float)maxHP;
+    }
 }
 
