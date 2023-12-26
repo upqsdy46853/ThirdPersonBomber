@@ -44,7 +44,7 @@ public class gameLogic : NetworkBehaviour
         blue_amethyst_count = blue_amethystcontroller.collect_count;
 
         int remainingTime = (int)gameTime.RemainingTime(Runner);
-        Debug.Log("timer :" + remainingTime);
+        //Debug.Log("timer :" + remainingTime);
         timerText.text = string.Format("{0}:{1:00}", remainingTime / 60, remainingTime % 60);
 
         if (gameTime.ExpiredOrNotRunning(Runner))
