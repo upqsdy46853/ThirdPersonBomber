@@ -61,7 +61,7 @@ public class ReadyUIHandler : NetworkBehaviour
             if(gameObjectToTransfer.TryGetComponent<PlayerState>(out var state))
                 state.Respawn();
         }
-        Runner.SetActiveScene("Game");
+        Runner.SetActiveScene("Game_2");
         enabled = false;
     }
 

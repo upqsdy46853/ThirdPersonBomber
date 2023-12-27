@@ -618,8 +618,6 @@ MonoBehaviour:
   - {fileID: -3942501486282277601}
   - {fileID: 5824107158941425598}
   - {fileID: 7045510445981817084}
-  - {fileID: 1939661437541799868}
-  - {fileID: 7893227068008890736}
   SimulationBehaviours: []
 --- !u!65 &7045510446345952637
 BoxCollider:

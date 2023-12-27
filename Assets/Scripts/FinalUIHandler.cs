@@ -45,6 +45,8 @@ public class FinalUIHandler : NetworkBehaviour
             blueResult.text = "";
         }
 
+        Cursor.lockState = CursorLockMode.None;
+
         redPointText.text = _getRedPoint.ToString();
         bluePointText.text = _getBluePoint.ToString();
     }
@@ -58,8 +60,9 @@ public class FinalUIHandler : NetworkBehaviour
     public void backToMenu()
     {
         // Destroy all
-
+        
         // Load new Menu Scene
+        Runner.SetActiveScene("Ready");
         
     }
 }
