@@ -12,6 +12,10 @@ public class movement : NetworkBehaviour
     public float hInput;
     public float vInput;
     //public bool isdead = false;
+    public GameObject hair_m;
+    public GameObject hair_f;
+    public GameObject cloak_m;
+    public GameObject cloak_f;
     
     NetworkCharacterControllerPrototypeCustom controller;
     
@@ -32,6 +36,22 @@ public class movement : NetworkBehaviour
         else{
             hInput = 0;
             vInput = 0;
+        }
+
+        if ( gameObject.GetComponent<PlayerState>().Team == Color.red )
+        {
+            hair_m.SetActive(true);
+            cloak_m.SetActive(true);
+            hair_f.SetActive(false);
+            cloak_f.SetActive(false);
+        }
+
+        else
+        {
+            hair_m.SetActive(false);
+            hair_f.SetActive(true);
+            cloak_m.SetActive(false);
+            cloak_f.SetActive(true);
         }
     }
 
