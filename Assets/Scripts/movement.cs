@@ -22,7 +22,7 @@ public class movement : NetworkBehaviour
     {
         controller = GetComponent<NetworkCharacterControllerPrototypeCustom>();
         hittedState = Animator.StringToHash("Base Layer.GetHit01_SwordAndShield");
-        a = a_f;
+        a = a_m;
         //a = GameObject.Find("MaleCharacterPolyart").GetComponent<Animator>();
     }
 
