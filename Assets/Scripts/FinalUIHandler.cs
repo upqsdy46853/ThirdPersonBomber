@@ -59,7 +59,7 @@ public class FinalUIHandler : NetworkBehaviour
     {
         // Destroy all
 
-        // Back To Ready Scene
-        Runner.SetActiveScene("Ready");
+        // Load new Menu Scene
+        
     }
 }
