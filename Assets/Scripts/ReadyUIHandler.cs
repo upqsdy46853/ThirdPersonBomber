@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class ReadyUIHandler : NetworkBehaviour
 {
+
     public TextMeshProUGUI blueTeamMembers;
     public TextMeshProUGUI redTeamMembers;
 
@@ -28,9 +29,14 @@ public class ReadyUIHandler : NetworkBehaviour
     public TextMeshProUGUI mapText2;
     private int _selectedMap;
 
+    private void Awake()
+    {
+
+    }
     private void Start()
     {
-        selectMap(1);
+
+        mapSelecter.active = false;
     }
 
     // Update is called once per frame
@@ -49,6 +55,10 @@ public class ReadyUIHandler : NetworkBehaviour
         PlayerState[] allPlayers = GameObject.FindObjectsOfType<PlayerState>();
         foreach(PlayerState player in allPlayers)
         {
+            if(player.HasStateAuthority && player.HasInputAuthority)
+            {
+                mapSelecter.active = true;
+            }
             if(player.Team == Color.blue)
             {
                 _blueLocalString += player.nickName;

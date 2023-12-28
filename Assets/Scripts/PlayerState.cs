@@ -33,7 +33,7 @@ public class PlayerState : NetworkBehaviour
     private float respawnCD;
     Animator a;
     private int _selectedCode;
-    private ReadyUIHandler _readyUI;
+    public ReadyUIHandler _readyUI;
 
     void Start()
     {
@@ -79,7 +79,8 @@ public class PlayerState : NetworkBehaviour
             {
                 _selectedCode = 3;
             }
-            _readyUI.selectMap(_selectedCode);
+            if(_readyUI)
+                _readyUI.selectMap(_selectedCode);
         }
     }
 
@@ -117,7 +118,12 @@ public class PlayerState : NetworkBehaviour
 
     public IEnumerator Respawn(float respawnCD)
     {
-        Debug.Log(gameObject.transform.position);
+        
+        if(respawnCD < 2.0f)
+        {
+            _readyUI = GameObject.FindObjectOfType<ReadyUIHandler>();
+        }
+
         yield return new WaitForSeconds(respawnCD);
         a.SetBool("die", false);
         if(HasInputAuthority){
