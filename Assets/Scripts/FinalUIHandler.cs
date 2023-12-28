@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
 using TMPro;
+using UnityEngine.UI;
 
 public class FinalUIHandler : NetworkBehaviour
 {
@@ -15,6 +16,8 @@ public class FinalUIHandler : NetworkBehaviour
     public TextMeshProUGUI blueResult;
     public TextMeshProUGUI redPointText;
     public TextMeshProUGUI bluePointText;
+    public Button Restart;
+    public TextMeshProUGUI buttonText;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +52,7 @@ public class FinalUIHandler : NetworkBehaviour
 
         redPointText.text = _getRedPoint.ToString();
         bluePointText.text = _getBluePoint.ToString();
+        buttonText.text = "Restart";
     }
 
     // Update is called once per frame
@@ -63,6 +67,7 @@ public class FinalUIHandler : NetworkBehaviour
         
         // Load new Menu Scene
         Runner.SetActiveScene("Ready");
-        
+        Restart.interactable = false;
+        buttonText.text = "Waiting...";
     }
 }

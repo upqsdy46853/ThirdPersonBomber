@@ -274,6 +274,8 @@ MonoBehaviour:
   blueResult: {fileID: 733345027}
   redPointText: {fileID: 913945802}
   bluePointText: {fileID: 686680455}
+  Restart: {fileID: 1918005016}
+  buttonText: {fileID: 1351280904}
 --- !u!1 &273952108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1754,7 +1756,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!20 &2070077995
 Camera:
   m_ObjectHideFlags: 0

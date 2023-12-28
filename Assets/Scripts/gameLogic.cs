@@ -7,7 +7,7 @@ using TMPro;
 
 public class gameLogic : NetworkBehaviour
 {
-    private float _gameTime = 180.0f;
+    private float _gameTime = 20.0f;
     [Networked] private TickTimer gameTime { get; set; }
     bool has_set_timer = false;
     public TextMeshProUGUI timerText;

@@ -210,6 +210,9 @@ public class PlayerState : NetworkBehaviour
                 });
         amethystCount -= 1;
     }
-
+    public float getHP()
+    {
+        return (float)HP / (float)maxHP;
+    }
 }
 
