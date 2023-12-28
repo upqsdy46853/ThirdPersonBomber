@@ -116,7 +116,15 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     }
     public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ArraySegment<byte> data) { }
-    public void OnSceneLoadDone(NetworkRunner runner) { }
+    public void OnSceneLoadDone(NetworkRunner runner) {
+        PlayerState[] allPlayer = GameObject.FindObjectsOfType<PlayerState>();
+        foreach (PlayerState player in allPlayer)
+        {
+            StartCoroutine(player.Respawn(0.0f));
+            
+            Debug.Log(player.nickName);
+        }
+    }
     public void OnSceneLoadStart(NetworkRunner runner) { }
     
 }

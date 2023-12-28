@@ -90,7 +90,7 @@ public class PlayerState : NetworkBehaviour
                 transform.Find("landingPoint").gameObject.SetActive(false);
                 transform.Find("body").Find("hand").GetComponent<LineRenderer>().enabled = false;
             }
-            StartCoroutine(Respawn());
+            StartCoroutine(Respawn(respawnCD));
         }
         else
         {
@@ -98,8 +98,9 @@ public class PlayerState : NetworkBehaviour
         }
     }
 
-    public IEnumerator Respawn()
+    public IEnumerator Respawn(float respawnCD)
     {
+        Debug.Log(gameObject.transform.position);
         yield return new WaitForSeconds(respawnCD);
         a.SetBool("die", false);
         if(HasInputAuthority){
@@ -117,13 +118,16 @@ public class PlayerState : NetworkBehaviour
                 Debug.Log("throw amethyst");
             }
             // debug: cant teleport to specified place
-            if(gameObject.TryGetComponent<CharacterController>(out var cc)){
+            
+            if (gameObject.TryGetComponent<CharacterController>(out var cc)){
                 cc.enabled = false;
                 if(Team == Color.red){
                     movement.teleport(new Vector3(13.0f, 1.0f, Random.Range(-7.0f, 7.0f)));
+                    Debug.Log(gameObject.transform.position);
                 }
                 else{
                     movement.teleport(new Vector3(-15.0f, 1.0f, Random.Range(-7.0f, 7.0f)));
+                    Debug.Log(gameObject.transform.position);
                 }
                 cc.enabled = true;
             }
@@ -156,6 +160,7 @@ public class PlayerState : NetworkBehaviour
     static void OnTeamChanged(Changed<PlayerState> changed)
     {
         changed.Behaviour.MeshRenderer.material.color = changed.Behaviour.Team;
+        changed.Behaviour.playerNickNameTM.color = changed.Behaviour.Team;
     }
 
     [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
