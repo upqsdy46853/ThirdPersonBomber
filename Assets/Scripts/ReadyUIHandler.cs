@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
 using TMPro;
+using UnityEngine.UI;
 
 public class ReadyUIHandler : NetworkBehaviour
 {
@@ -17,6 +18,20 @@ public class ReadyUIHandler : NetworkBehaviour
     [Networked]
     private int _redTeamCount { get; set; }
 
+    // Map selecter
+    public GameObject mapSelecter;
+    public RawImage mapBox0;
+    public RawImage mapBox1;
+    public RawImage mapBox2;
+    public TextMeshProUGUI mapText0;
+    public TextMeshProUGUI mapText1;
+    public TextMeshProUGUI mapText2;
+    private int _selectedMap;
+
+    private void Start()
+    {
+        selectMap(1);
+    }
 
     // Update is called once per frame
     void Update()
@@ -61,7 +76,7 @@ public class ReadyUIHandler : NetworkBehaviour
             if(gameObjectToTransfer.TryGetComponent<PlayerState>(out var state))
                 state.Respawn(0.0f);
         }
-        Runner.SetActiveScene("Game");
+        Runner.SetActiveScene(getMapName());
         enabled = false;
     }
 
@@ -72,5 +87,50 @@ public class ReadyUIHandler : NetworkBehaviour
     public int getRedTeamNum()
     {
         return _redTeamCount;
+    }
+    public void selectMap(int code)
+    {
+        Color yello = new Color(1.0f, 0.5f, 0.0f);
+        Color unselected = Color.black;
+        _selectedMap = code;
+        if(code == 1)
+        {
+            mapBox0.color = yello;
+            mapText0.color = yello;
+
+            mapBox1.color = unselected;
+            mapText1.color = unselected;
+            mapBox2.color = unselected;
+            mapText2.color = unselected;
+        }
+        else if(code == 2)
+        {
+            mapBox1.color = yello;
+            mapText1.color = yello;
+
+            mapBox0.color = unselected;
+            mapText0.color = unselected;
+            mapBox2.color = unselected;
+            mapText2.color = unselected;
+        }
+        else if(code == 3)
+        {
+            mapBox2.color = yello;
+            mapText2.color = yello;
+
+            mapBox1.color = unselected;
+            mapText1.color = unselected;
+            mapBox0.color = unselected;
+            mapText0.color = unselected;
+        }
+    }
+    private string getMapName()
+    {
+        if (_selectedMap == 1)
+            return "Game";
+        else if (_selectedMap == 2)
+            return "Game_2";
+        else
+            return "Game_3";
     }
 }

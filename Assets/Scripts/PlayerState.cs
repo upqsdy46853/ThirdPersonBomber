@@ -32,7 +32,8 @@ public class PlayerState : NetworkBehaviour
 
     private float respawnCD;
     Animator a;
-
+    private int _selectedCode;
+    private ReadyUIHandler _readyUI;
 
     void Start()
     {
@@ -49,6 +50,9 @@ public class PlayerState : NetworkBehaviour
             Team = Color.blue;
 
         a = transform.Find("MaleCharacterPolyart").GetComponent<Animator>();
+        _selectedCode = 1;
+
+        _readyUI = GameObject.FindObjectOfType<ReadyUIHandler>();
     }
 
     void Update()
@@ -63,6 +67,19 @@ public class PlayerState : NetworkBehaviour
             {
                 RPC_SetTeam(Color.blue);
             }
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                _selectedCode = 1;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                _selectedCode = 2;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                _selectedCode = 3;
+            }
+            _readyUI.selectMap(_selectedCode);
         }
     }
 

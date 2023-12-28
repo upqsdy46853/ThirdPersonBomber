@@ -37,6 +37,8 @@ public class InGameUIHandler : NetworkBehaviour
         redPoint.text = redCollector.getCount().ToString();
 
         HPTMP.text = (hp * 100.0f).ToString() + "%";
+        HPTMP.color = new Color((1 - hp), hp, 0.0f);
+        /*
         if (hp <= 0.3f)
         {
             HPTMP.color = new Color(255.0f, 0.0f, 0.0f, 60.0f);
@@ -44,6 +46,6 @@ public class InGameUIHandler : NetworkBehaviour
         else
         {
             HPTMP.color = new Color(0.0f, 255.0f, 0.0f, 60.0f);
-        }
+        }*/
     }
 }
