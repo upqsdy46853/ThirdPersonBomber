@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 899619659014758657}
   - component: {fileID: 899619659014758656}
   - component: {fileID: 899619659014758663}
-  - component: {fileID: 899619659014758662}
-  - component: {fileID: 899619659014758661}
+  - component: {fileID: 6304075266107588312}
+  - component: {fileID: 1016650950151802598}
   m_Layer: 0
   m_Name: DesertBridge_Mid
   m_TagString: Untagged
@@ -53,7 +53,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &899619659014758663
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -65,10 +65,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.9204197, y: 0.1171937, z: 2.0487375}
-  m_Center: {x: -0.17515087, y: -0.50637174, z: -2.8405976}
---- !u!65 &899619659014758662
-BoxCollider:
+  m_Size: {x: 3.9204197, y: 1.0796417, z: 2.0079703}
+  m_Center: {x: -0.17515087, y: -0.98759586, z: -2.8609812}
+--- !u!136 &6304075266107588312
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -77,11 +77,12 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.9992409, y: 0.67945683, z: 0.17767239}
-  m_Center: {x: -0.13576126, y: -0.16027158, z: -3.8114438}
---- !u!65 &899619659014758661
-BoxCollider:
+  m_Radius: 0.5
+  m_Height: 4.5
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: -1.8}
+--- !u!136 &1016650950151802598
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -90,9 +91,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.9659882, y: 0.69196355, z: 0.19648457}
-  m_Center: {x: -0.14187813, y: -0.15401822, z: -1.9558749}
+  m_Radius: 0.5
+  m_Height: 4.5
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: -4}
 --- !u!1 &899619659481198641
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,19 +372,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &899619658022852523
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 899619658022818056}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.13500214, y: 1.0152166, z: 27.35112}
-  m_Center: {x: 0.9409752, y: 0.10104805, z: -13.1305275}
 --- !u!65 &899619658022852516
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -394,8 +383,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.09089279, y: 1.0152166, z: 27.350597}
-  m_Center: {x: -0.96510696, y: 0.10104805, z: -13.130268}
+  m_Size: {x: 0.47436428, y: 1.0152166, z: 27.350597}
+  m_Center: {x: -1.1568427, y: 0.10104805, z: -13.130268}
 --- !u!65 &899619658022852517
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -407,8 +396,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 0.08027965, z: 27.3528}
-  m_Center: {x: 0.008476138, y: -0.36642042, z: -13.131368}
+  m_Size: {x: 2, y: 0.40851688, z: 27.3528}
+  m_Center: {x: 0.008476138, y: -0.53053904, z: -13.131368}
+--- !u!65 &899619658022852523
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899619658022818056}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4789114, y: 1.0152166, z: 27.35112}
+  m_Center: {x: 1.1129298, y: 0.10104805, z: -13.1305275}
 --- !u!4 &899619658023243048 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: d49aa43d5b164ec4fa495ffd1a70c5de, type: 3}
@@ -1408,8 +1410,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.13500214, y: 1.0152166, z: 27.35112}
-  m_Center: {x: 0.9409752, y: 0.10104805, z: -13.1305275}
+  m_Size: {x: 0.45731258, y: 1.0152166, z: 27.35112}
+  m_Center: {x: 1.1021304, y: 0.10104805, z: -13.1305275}
 --- !u!65 &899619659318236858
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1421,8 +1423,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.09089279, y: 1.0152166, z: 27.350597}
-  m_Center: {x: -0.96510696, y: 0.10104805, z: -13.130268}
+  m_Size: {x: 0.31801605, y: 1.0152166, z: 27.350597}
+  m_Center: {x: -1.0786686, y: 0.10104805, z: -13.130268}
 --- !u!65 &899619659318236859
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1434,8 +1436,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 0.08027965, z: 27.3528}
-  m_Center: {x: 0.008476138, y: -0.36642042, z: -13.131368}
+  m_Size: {x: 1.9685249, y: 0.48570395, z: 27.3528}
+  m_Center: {x: -0.0072612762, y: -0.56913257, z: -13.131368}
 --- !u!1001 &899619658955256503
 PrefabInstance:
   m_ObjectHideFlags: 0
