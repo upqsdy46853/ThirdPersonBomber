@@ -35,11 +35,11 @@ public class PlayerState : NetworkBehaviour
     public int amethystCount {get; set;}
 
     // bomb control ========================
+        [Networked(OnChanged = nameof(OnSmokeBombCountChanged))]
+    public int smokeBombCount { get; set; }
+    
     [Networked(OnChanged = nameof(OnBlackBombCountChanged))]
     public int blackBombCount { get; set; }
-
-    [Networked(OnChanged = nameof(OnSmokeBombCountChanged))]
-    public int smokeBombCount { get; set; }
     // =====================================
 
     private BasicSpawner _basicSpawner;
@@ -48,6 +48,7 @@ public class PlayerState : NetworkBehaviour
     private float respawnCD;
     Animator a;
     private int _selectedCode;
+    private int bomb_id;
     public ReadyUIHandler _readyUI;
     public InGameUIHandler _gameUI;
 
@@ -67,6 +68,7 @@ public class PlayerState : NetworkBehaviour
 
         a = transform.Find("MaleCharacterPolyart").GetComponent<Animator>();
         _selectedCode = 1;
+        bomb_id = 1;
 
         
     }
@@ -95,10 +97,34 @@ public class PlayerState : NetworkBehaviour
             {
                 _selectedCode = 3;
             }*/
-            if (_state == GameState.gameReady)
+            if (_state == GameState.gameReady){
                 _readyUI.selectMap(_selectedCode);
-            else if (_state == GameState.gameStart)
-                _gameUI.changeBomb(_selectedCode);
+                
+            }
+            else if (_state == GameState.gameStart){
+                // switch(_selectedCode){
+                //     case 1:
+                //         bomb_id = _selectedCode;
+                //         break;
+                //     case 2:
+                //         if(smokeBombCount > 0){
+                //             bomb_id = _selectedCode;
+                //         }
+                //         break;
+                //     case 3:
+                //         if(blackBombCount > 0){
+                //             bomb_id = _selectedCode;
+                //         }
+                //         break;
+                //     default:
+                //         break;
+                // }
+                // bomb_id = _selectedCode;
+                _gameUI.changeBomb(bomb_id);
+                // trajectory traj = gameObject.GetComponentInChildren<trajectory>();
+                // traj.setBombID(bomb_id-1);
+                // Debug.Log("selected :" + bomb_id);
+            }
         }
     }
 
@@ -115,11 +141,36 @@ public class PlayerState : NetworkBehaviour
             if(_selectedCode<=3 && _selectedCode>=1){
                 _selectedCode = data.bombID;
             }
+            if (_state == GameState.gameReady){
+                _readyUI.selectMap(_selectedCode);
+                
+            }
+            if (_state == GameState.gameStart){
+                switch(_selectedCode){
+                    case 1:
+                        bomb_id = _selectedCode;
+                        break;
+                    case 2:
+                        if(smokeBombCount > 0){
+                            bomb_id = _selectedCode;
+                        }
+                        break;
+                    case 3:
+                        if(blackBombCount > 0){
+                            bomb_id = _selectedCode;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                
+                bomb_id = _selectedCode;
+                trajectory traj = gameObject.GetComponentInChildren<trajectory>();
+                traj.setBombID(bomb_id-1);
+                Debug.Log("selected :" + bomb_id);
+            }
 
         }
-        trajectory traj = gameObject.GetComponentInChildren<trajectory>();
-        traj.setBombID(_selectedCode-1);
-        Debug.Log("selected :" + _selectedCode);
     }
 
     public void ChangeState(GameState newState)
@@ -243,6 +294,8 @@ public class PlayerState : NetworkBehaviour
             RPC_SetNickName(PlayerPrefs.GetString("PlayerNickname"));
             Local = this;
         }
+        smokeBombCount = 3;
+        blackBombCount = 3;
     }
     public void PlayerLeft(PlayerRef player)
     {
