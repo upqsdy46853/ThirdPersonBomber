@@ -37,6 +37,7 @@ public class InGameUIHandler : NetworkBehaviour
             }
             player.ChangeState(PlayerState.GameState.gameStart);
         }
+        bombText0.text = "";
     }
 
     // Update is called once per frame
@@ -58,6 +59,8 @@ public class InGameUIHandler : NetworkBehaviour
         {
             HPTMP.color = new Color(0.0f, 255.0f, 0.0f, 60.0f);
         }*/
+        bombText1.text = _player.smokeBombCount.ToString();
+        bombText2.text = _player.blackBombCount.ToString();
     }
 
     public void changeBomb(int code)
