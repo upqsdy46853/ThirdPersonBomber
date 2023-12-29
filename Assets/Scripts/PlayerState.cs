@@ -221,8 +221,14 @@ public class PlayerState : NetworkBehaviour
 
     public void OnBlackScreen(){
         if(Object.HasInputAuthority){
-            black_ui.SetActive(true);
+            StartCoroutine(black_screen_co());
         }
+    }
+
+    IEnumerator black_screen_co(){
+        black_ui.SetActive(true);
+        yield return new WaitForSeconds(5.0f);
+        black_ui.SetActive(false);
     }
 
     public IEnumerator Respawn(float respawnCD)
