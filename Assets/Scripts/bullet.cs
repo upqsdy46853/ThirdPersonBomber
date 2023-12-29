@@ -29,7 +29,6 @@ public class bullet : NetworkBehaviour
         bomb_id = bomb_type;
         life = TickTimer.CreateFromSeconds(Runner, 10.0f);
         safe = TickTimer.CreateFromSeconds(Runner, 0.1f);
-
         StartCoroutine(spawnedCO(startingVelocity));
         //GetComponent<Rigidbody>().velocity = startingVelocity;
     }
@@ -110,5 +109,26 @@ public class bullet : NetworkBehaviour
     }
 
     static void OnBombIDChanged(Changed<bullet> changed)
-    {}
+    {
+        MeshRenderer[] meshRenderers = changed.Behaviour.gameObject.GetComponentsInChildren<MeshRenderer>();
+        switch (changed.Behaviour.bomb_id){
+            case 0:
+                foreach (MeshRenderer meshRenderer in meshRenderers)
+                    for (int i = 0; i < meshRenderer.materials.Length; i++)
+                        meshRenderer.materials[i].color = Color.gray;
+                break;
+            case 1:
+            foreach (MeshRenderer meshRenderer in meshRenderers)
+                    for (int i = 0; i < meshRenderer.materials.Length; i++)
+                        meshRenderer.materials[i].color = Color.white;
+                break;
+            case 2:
+                foreach (MeshRenderer meshRenderer in meshRenderers)
+                    for (int i = 0; i < meshRenderer.materials.Length; i++)
+                        meshRenderer.materials[i].color = Color.black;
+                break;
+            default:
+                break;
+        }
+    }
 }
