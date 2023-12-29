@@ -52,6 +52,13 @@ public class PlayerState : NetworkBehaviour
     public ReadyUIHandler _readyUI;
     public InGameUIHandler _gameUI;
     public GameObject black_ui;
+    // ================
+    SkinnedMeshRenderer[] skinnedMeshRenderers;
+    MeshRenderer[] meshRenderers;
+    public GameObject playerModel;
+    private List<Color> defaultColors = new List<Color>();
+    private List<Color> defaultColors2 = new List<Color>();
+    // ================
 
     void Start()
     {
@@ -71,7 +78,16 @@ public class PlayerState : NetworkBehaviour
         _selectedCode = 1;
         bomb_id = 1;
 
-        
+        skinnedMeshRenderers = playerModel.GetComponentsInChildren<SkinnedMeshRenderer>();
+        foreach (SkinnedMeshRenderer skinnedMeshRenderer in skinnedMeshRenderers){
+            for (int i = 0; i < skinnedMeshRenderer.materials.Length; i++)
+                defaultColors.Add(skinnedMeshRenderer.materials[i].color);
+        }
+        meshRenderers = playerModel.GetComponentsInChildren<MeshRenderer>();
+        foreach (MeshRenderer meshRenderer in meshRenderers){
+            for (int i = 0; i < meshRenderer.materials.Length; i++)
+                defaultColors2.Add(meshRenderer.materials[i].color);
+        }
     }
 
     void Update()
@@ -193,11 +209,12 @@ public class PlayerState : NetworkBehaviour
             
             if(HasInputAuthority){
                 black_ui = GameObject.Find("black");
-                black_ui.SetActive(false);
+                if(black_ui!=null)
+                    black_ui.SetActive(false);
             }           
-            if(black_ui == null){
-                Debug.Log("cant find black ui");
-            }
+            //if(black_ui == null){
+            //    Debug.Log("cant find black ui");
+            //}
         }
         
     }
@@ -220,15 +237,34 @@ public class PlayerState : NetworkBehaviour
     }
 
     public void OnBlackScreen(){
-        if(Object.HasInputAuthority){
-            StartCoroutine(black_screen_co());
-        }
+        StartCoroutine(black_screen_co());
     }
 
     IEnumerator black_screen_co(){
-        black_ui.SetActive(true);
+        if(Object.HasInputAuthority){
+            black_ui.SetActive(true);
+        }
+        foreach (SkinnedMeshRenderer skinnedMeshRenderer in skinnedMeshRenderers){
+            for (int i = 0; i < skinnedMeshRenderer.materials.Length; i++)
+                skinnedMeshRenderer.materials[i].color = Color.black;
+        }
+        foreach (MeshRenderer meshRenderer in meshRenderers){
+            for (int i = 0; i < meshRenderer.materials.Length; i++)
+                meshRenderer.materials[i].color = Color.black;
+        }
+            
         yield return new WaitForSeconds(5.0f);
-        black_ui.SetActive(false);
+        foreach (SkinnedMeshRenderer skinnedMeshRenderer in skinnedMeshRenderers){
+            for (int i = 0; i < skinnedMeshRenderer.materials.Length; i++)
+                skinnedMeshRenderer.materials[i].color = defaultColors[i];
+        }
+        foreach (MeshRenderer meshRenderer in meshRenderers){
+            for (int i = 0; i < meshRenderer.materials.Length; i++)
+                meshRenderer.materials[i].color = defaultColors2[i];
+        }
+        if(Object.HasInputAuthority){
+            black_ui.SetActive(false);
+        }
     }
 
     public IEnumerator Respawn(float respawnCD)

@@ -706,7 +706,12 @@ MonoBehaviour:
       Data: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   playerNickNameTM: {fileID: 5638297278580334985}
   _amethystCount: 0
+  _smokeBombCount: 0
+  _blackBombCount: 0
   _readyUI: {fileID: 0}
+  _gameUI: {fileID: 0}
+  black_ui: {fileID: 0}
+  playerModel: {fileID: 693818517468876665}
 --- !u!114 &5824107158941425598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1058,6 +1063,11 @@ Animator:
 --- !u!1 &470366570037421853 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5003047110509551044, guid: c564c8c0d0cdc45429417f315e9f3e41, type: 3}
+  m_PrefabInstance: {fileID: 4893573525559573209}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &693818517468876665 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5352958571798197664, guid: c564c8c0d0cdc45429417f315e9f3e41, type: 3}
   m_PrefabInstance: {fileID: 4893573525559573209}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &3384117940524186835 stripped
