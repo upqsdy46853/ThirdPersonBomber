@@ -6347,7 +6347,7 @@ GameObject:
   - component: {fileID: 847975073517640706}
   - component: {fileID: 2492493930290124559}
   - component: {fileID: 4057632272371648394}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6602,7 +6602,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1033139067881014099}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ladder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7073,9 +7073,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3277743200767323201}
     m_Modifications:
+    - target: {fileID: 1397302674859380, guid: 0073cc7a3535b5648b67fc6df3289f29, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1457959677259364, guid: 0073cc7a3535b5648b67fc6df3289f29, type: 3}
       propertyPath: m_Name
       value: ForestBanner_Blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 1457959677259364, guid: 0073cc7a3535b5648b67fc6df3289f29, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471225902636184, guid: 0073cc7a3535b5648b67fc6df3289f29, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574556948272520, guid: 0073cc7a3535b5648b67fc6df3289f29, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1595072694015510, guid: 0073cc7a3535b5648b67fc6df3289f29, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676758688995668, guid: 0073cc7a3535b5648b67fc6df3289f29, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1701497225551302, guid: 0073cc7a3535b5648b67fc6df3289f29, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745841061942156, guid: 0073cc7a3535b5648b67fc6df3289f29, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4942013432702546, guid: 0073cc7a3535b5648b67fc6df3289f29, type: 3}
       propertyPath: m_RootOrder
@@ -12057,6 +12089,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DesertLadder (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -12100,6 +12136,40 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
   m_PrefabInstance: {fileID: 3277743200318501782}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3277743200318403894 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
+  m_PrefabInstance: {fileID: 3277743200318501782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &3870718131707219284
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277743200318403894}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &870690294331785866
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277743200318403894}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6400001, y: 1.0205966, z: 0.5725766}
+  m_Center: {x: -0.008364201, y: -0.4897018, z: 0.1652722}
 --- !u!1001 &3277743200325469769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27448,6 +27518,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DesertLadder (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -27486,6 +27560,40 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 81f52d79120604d4fb0609b14e9ffe15, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
+--- !u!1 &3277743201316862861 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
+  m_PrefabInstance: {fileID: 3277743201316830509}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &4838009553214484891
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277743201316862861}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1567821030163173490
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277743201316862861}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6400001, y: 1.9999998, z: 0.24000031}
+  m_Center: {x: -0.00836423, y: -0.0000002682209, z: -0.0010159202}
 --- !u!4 &3277743201317218221 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
@@ -28282,6 +28390,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DesertLadder (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -28320,6 +28432,40 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 81f52d79120604d4fb0609b14e9ffe15, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
+--- !u!1 &3277743201368743470 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
+  m_PrefabInstance: {fileID: 3277743201368709262}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &5657090368951964336
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277743201368743470}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &3501119842877452863
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277743201368743470}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6400001, y: 1.1013656, z: 0.57896805}
+  m_Center: {x: -0.008364201, y: -0.44931734, z: -0.06526613}
 --- !u!4 &3277743201369096718 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
@@ -29541,6 +29687,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1033139067881014099}
     m_Modifications:
+    - target: {fileID: 1790211124287246, guid: 0763a19602566d245849607be40cd87e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4428809730499094, guid: 0763a19602566d245849607be40cd87e, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -29584,6 +29734,40 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4428809730499094, guid: 0763a19602566d245849607be40cd87e, type: 3}
   m_PrefabInstance: {fileID: 3277743201448658958}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3277140737764777728 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1790211124287246, guid: 0763a19602566d245849607be40cd87e, type: 3}
+  m_PrefabInstance: {fileID: 3277743201448658958}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &7548367815240306930
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277140737764777728}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &918235632296310803
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277140737764777728}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6400001, y: 0.9643543, z: 0.5674222}
+  m_Center: {x: -0.008364201, y: -0.517823, z: 0.16269502}
 --- !u!1001 &3277743201457150641
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38656,6 +38840,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DesertLadder (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -38699,6 +38887,40 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
   m_PrefabInstance: {fileID: 3277743201956709881}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3277743201956741977 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
+  m_PrefabInstance: {fileID: 3277743201956709881}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &2622701064776906528
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277743201956741977}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &4337890033831998842
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277743201956741977}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6400001, y: 0.96751153, z: 0.4664449}
+  m_Center: {x: -0.008364201, y: -0.51624435, z: 0.11220637}
 --- !u!1001 &3277743201961221245
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39087,6 +39309,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DesertLadder (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -39130,6 +39356,40 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
   m_PrefabInstance: {fileID: 3277743201974538663}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3277743201974572807 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
+  m_PrefabInstance: {fileID: 3277743201974538663}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &3237401122904745028
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277743201974572807}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &227602553635113862
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277743201974572807}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6400001, y: 0.9524331, z: 0.46082646}
+  m_Center: {x: -0.008364201, y: -0.52378356, z: 0.10939714}
 --- !u!1001 &3277743201982393279
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42895,6 +43155,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DesertLadder (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -42933,6 +43197,40 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 81f52d79120604d4fb0609b14e9ffe15, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
+--- !u!1 &4335188545212303798 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
+  m_PrefabInstance: {fileID: 4335188545212337942}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &137999713378239302
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4335188545212303798}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &3605884126605425371
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4335188545212303798}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6400001, y: 1.0828599, z: 0.46092838}
+  m_Center: {x: -0.008364201, y: -0.45857018, z: 0.109448105}
 --- !u!4 &4335188545212732822 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
@@ -43029,6 +43327,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DesertLadder (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -43067,6 +43369,40 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 81f52d79120604d4fb0609b14e9ffe15, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
+--- !u!1 &5767548109859700739 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
+  m_PrefabInstance: {fileID: 5767548109859604131}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &7149104793124409402
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5767548109859700739}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &6491386536850412248
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5767548109859700739}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6400001, y: 1.1027098, z: 0.46361363}
+  m_Center: {x: -0.008364201, y: -0.44864523, z: 0.11079073}
 --- !u!4 &5767548109860002851 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 33b076beca5cd8446bb9f98722781ed7, type: 3}
