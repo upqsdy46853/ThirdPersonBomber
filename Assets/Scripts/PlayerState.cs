@@ -4,9 +4,16 @@ using UnityEngine;
 using Fusion;
 using TMPro;
 
-
 public class PlayerState : NetworkBehaviour
 {
+    public enum GameState
+    {
+        gameReady,
+        gameStart,
+        gameOver
+    }
+    private GameState _state;
+
     // Original NetworkPlayer
     public static PlayerState Local { get; set; }
 
@@ -34,6 +41,7 @@ public class PlayerState : NetworkBehaviour
     Animator a;
     private int _selectedCode;
     public ReadyUIHandler _readyUI;
+    public InGameUIHandler _gameUI;
 
     void Start()
     {
@@ -52,7 +60,7 @@ public class PlayerState : NetworkBehaviour
         a = transform.Find("MaleCharacterPolyart").GetComponent<Animator>();
         _selectedCode = 1;
 
-        _readyUI = GameObject.FindObjectOfType<ReadyUIHandler>();
+        
     }
 
     void Update()
@@ -79,8 +87,10 @@ public class PlayerState : NetworkBehaviour
             {
                 _selectedCode = 3;
             }
-            if(_readyUI)
+            if (_state == GameState.gameReady)
                 _readyUI.selectMap(_selectedCode);
+            else if (_state == GameState.gameStart)
+                _gameUI.changeBomb(_selectedCode);
         }
     }
 
@@ -98,6 +108,19 @@ public class PlayerState : NetworkBehaviour
         }
     }
 
+    public void ChangeState(GameState newState)
+    {
+        _state = newState;
+        if (newState == GameState.gameReady)
+        {
+            _readyUI = GameObject.FindObjectOfType<ReadyUIHandler>();
+        }
+        else if(newState == GameState.gameStart)
+        {
+            _gameUI = GameObject.FindObjectOfType<InGameUIHandler>();
+        }
+        
+    }
     public void OnTakeDamage()
     {
         HP -= 1;

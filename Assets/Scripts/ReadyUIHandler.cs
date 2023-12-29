@@ -35,7 +35,6 @@ public class ReadyUIHandler : NetworkBehaviour
     }
     private void Start()
     {
-
         mapSelecter.active = false;
     }
 
@@ -71,6 +70,7 @@ public class ReadyUIHandler : NetworkBehaviour
                 _redLocalString += "\n";
                 _redTeamCount += 1;
             }
+            player.ChangeState(PlayerState.GameState.gameReady);
         }
         blueTeamMembers.text = _blueLocalString;
         redTeamMembers.text = _redLocalString;

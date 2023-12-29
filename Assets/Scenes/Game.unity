@@ -779,7 +779,7 @@ GameObject:
   - component: {fileID: 583427248}
   - component: {fileID: 583427247}
   m_Layer: 5
-  m_Name: BombNum_1
+  m_Name: BombNum_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1592,6 +1592,13 @@ MonoBehaviour:
   redCollector: {fileID: 397414442}
   blueCollector: {fileID: 1021461632}
   HPTMP: {fileID: 419722883}
+  bombSelecter: {fileID: 339948569}
+  bombBox0: {fileID: 1446190363}
+  bombBox1: {fileID: 1563018766}
+  bombBox2: {fileID: 1904187074}
+  bombText0: {fileID: 1349354241}
+  bombText1: {fileID: 1471152270}
+  bombText2: {fileID: 583427247}
 --- !u!114 &1078826400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9232,7 +9239,7 @@ GameObject:
   - component: {fileID: 1349354242}
   - component: {fileID: 1349354241}
   m_Layer: 5
-  m_Name: BombNum_1
+  m_Name: BombNum_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

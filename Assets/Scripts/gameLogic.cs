@@ -72,6 +72,11 @@ public class gameLogic : NetworkBehaviour
             PlayerPrefs.SetInt("redPoint", red_amethyst_count);
             PlayerPrefs.SetInt("bluePoint", blue_amethyst_count);
             Debug.Log("Time Scale 1");
+            PlayerState[] allPlayers = GameObject.FindObjectsOfType<PlayerState>();
+            foreach (PlayerState player in allPlayers)
+            {
+                player.ChangeState(PlayerState.GameState.gameOver);
+            }
         }
     }
 }
