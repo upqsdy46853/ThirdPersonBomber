@@ -191,7 +191,10 @@ public class PlayerState : NetworkBehaviour
         {
             _gameUI = GameObject.FindObjectOfType<InGameUIHandler>();
             
-            black_ui = GameObject.Find("black");
+            if(HasInputAuthority){
+                black_ui = GameObject.Find("black");
+                black_ui.SetActive(false);
+            }           
             if(black_ui == null){
                 Debug.Log("cant find black ui");
             }
@@ -218,7 +221,7 @@ public class PlayerState : NetworkBehaviour
 
     public void OnBlackScreen(){
         if(Object.HasInputAuthority){
-            black_ui.SetActive(false);
+            black_ui.SetActive(true);
         }
     }
 
