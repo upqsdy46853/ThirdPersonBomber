@@ -270,6 +270,7 @@ GameObject:
   - component: {fileID: 118381599}
   - component: {fileID: 118381601}
   - component: {fileID: 118381600}
+  - component: {fileID: 118381602}
   m_Layer: 5
   m_Name: BumbPic
   m_TagString: Untagged
@@ -317,7 +318,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: ff88fa3921e65d54e91fd37bd8b39d00, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -332,6 +333,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 118381598}
   m_CullTransparentMesh: 1
+--- !u!114 &118381602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118381598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 1
 --- !u!1 &159318231
 GameObject:
   m_ObjectHideFlags: 0
@@ -1896,7 +1910,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: eec030ffdf3302149acd107d6c0e756f, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -10272,7 +10286,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: 347d9416b001e504f8f9a40ce45d1853, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
