@@ -51,6 +51,7 @@ public class PlayerState : NetworkBehaviour
     private int bomb_id;
     public ReadyUIHandler _readyUI;
     public InGameUIHandler _gameUI;
+    public GameObject black_ui;
 
     void Start()
     {
@@ -154,17 +155,23 @@ public class PlayerState : NetworkBehaviour
                         if(smokeBombCount > 0){
                             bomb_id = _selectedCode;
                         }
+                        else{
+                            bomb_id = 1;
+                        }
                         break;
                     case 3:
                         if(blackBombCount > 0){
                             bomb_id = _selectedCode;
+                        }
+                        else{
+                            bomb_id = 1;
                         }
                         break;
                     default:
                         break;
                 }
                 
-                bomb_id = _selectedCode;
+                //bomb_id = _selectedCode;
                 trajectory traj = gameObject.GetComponentInChildren<trajectory>();
                 traj.setBombID(bomb_id-1);
                 Debug.Log("selected :" + bomb_id);
@@ -183,6 +190,11 @@ public class PlayerState : NetworkBehaviour
         else if(newState == GameState.gameStart)
         {
             _gameUI = GameObject.FindObjectOfType<InGameUIHandler>();
+            
+            black_ui = GameObject.Find("black");
+            if(black_ui == null){
+                Debug.Log("cant find black ui");
+            }
         }
         
     }
@@ -201,6 +213,12 @@ public class PlayerState : NetworkBehaviour
         else
         {
             a.SetBool("hit", true);
+        }
+    }
+
+    public void OnBlackScreen(){
+        if(Object.HasInputAuthority){
+            black_ui.SetActive(false);
         }
     }
 

@@ -82,7 +82,7 @@ public class bullet : NetworkBehaviour
                     bool blocked = Physics.Raycast(transform.position, direction.normalized, distance, groundLayer);
                     if(!blocked)
                     {
-                        //state.OnBlackScreen();
+                        state.OnBlackScreen();
                     }
                 }
             }

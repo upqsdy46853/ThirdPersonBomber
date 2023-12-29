@@ -75,6 +75,18 @@ public class trajectory : NetworkBehaviour
                         //a.SetBool( "attack", true );
                     });
                     a.SetBool( "attack", true );
+                    //
+                    PlayerState state = gameObject.GetComponentInParent<PlayerState>();
+                    switch(current_bomb_id){
+                        case 1:
+                            state.smokeBombCount -= 1;
+                            break;
+                        case 2:
+                            state.blackBombCount -= 1;
+                            break;
+                        default:
+                            break;
+                    }
                 }
 
                 else

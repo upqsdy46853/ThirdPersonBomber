@@ -35,15 +35,16 @@ public class ReadyUIHandler : NetworkBehaviour
     }
     private void Start()
     {
-        mapSelecter.active = false;
+        mapSelecter.SetActive(false);// = false;
     }
 
     // Update is called once per frame
     void Update()
+    //public override void FixedUpdateNetwork()
     {
         if(Input.GetKeyDown(KeyCode.Return))
         {
-            StartGame();
+            RPC_StartGame();
         }
 
         // Member List
@@ -56,7 +57,7 @@ public class ReadyUIHandler : NetworkBehaviour
         {
             if(player.HasStateAuthority && player.HasInputAuthority)
             {
-                mapSelecter.active = true;
+                mapSelecter.SetActive(true);// = true;
             }
             if(player.Team == Color.blue)
             {
@@ -70,23 +71,42 @@ public class ReadyUIHandler : NetworkBehaviour
                 _redLocalString += "\n";
                 _redTeamCount += 1;
             }
-            player.ChangeState(PlayerState.GameState.gameReady);
+            if(player.HasInputAuthority)
+                player.ChangeState(PlayerState.GameState.gameReady);
         }
         blueTeamMembers.text = _blueLocalString;
         redTeamMembers.text = _redLocalString;
     }
 
-    public void StartGame()
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void RPC_StartGame()
     {
         Runner.SessionInfo.IsOpen = false;
         GameObject[] gameObjectsToTransfer = GameObject.FindGameObjectsWithTag("Player");
         foreach(GameObject gameObjectToTransfer in gameObjectsToTransfer)
         {
             DontDestroyOnLoad(gameObjectToTransfer);
-            if(gameObjectToTransfer.TryGetComponent<PlayerState>(out var state))
-                state.Respawn(0.0f);
+            //if(gameObjectToTransfer.TryGetComponent<PlayerState>(out var state)){
+            //    if(state.HasInputAuthority)
+            //         state.ChangeState(PlayerState.GameState.gameStart);
+            //    state.Respawn(0.0f);
+            //}
+                
         }
+
         Runner.SetActiveScene(getMapName());
+
+        foreach(GameObject gameObjectToTransfer in gameObjectsToTransfer)
+        {
+            //DontDestroyOnLoad(gameObjectToTransfer);
+            if(gameObjectToTransfer.TryGetComponent<PlayerState>(out var state)){
+                if(state.HasInputAuthority)
+                    state.ChangeState(PlayerState.GameState.gameStart);
+                state.Respawn(0.0f);
+            }
+                
+        }
+
         enabled = false;
     }
 

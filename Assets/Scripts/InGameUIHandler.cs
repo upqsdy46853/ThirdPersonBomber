@@ -40,7 +40,8 @@ public class InGameUIHandler : NetworkBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    //void Update()
+    public override void FixedUpdateNetwork()
     {
         float hp = _player.getHP();
         bluePoint.text = blueCollector.getCount().ToString();
