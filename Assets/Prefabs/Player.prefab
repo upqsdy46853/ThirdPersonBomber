@@ -642,7 +642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f2c397918db04faa9b74442278da920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
+  _interpolationDataSource: 2
   InterpolationSpace: 0
   InterpolationTarget: {fileID: 7045510446533528417}
   InterpolateErrorCorrection: 1
@@ -689,6 +689,7 @@ MonoBehaviour:
       Data: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   playerNickNameTM: {fileID: 5638297278580334985}
   _amethystCount: 0
+  _readyUI: {fileID: 0}
 --- !u!114 &5824107158941425598
 MonoBehaviour:
   m_ObjectHideFlags: 0
