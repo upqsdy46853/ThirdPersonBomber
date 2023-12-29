@@ -7,7 +7,14 @@ public class bullet : NetworkBehaviour
 {
     [Header("Prefabs")]
     public GameObject explosionParticleSystemPrefab;
+    // bomb control ========================
+    public GameObject smokeParticleSystemPrefab;
+    public GameObject blackParticleSystemPrefab;
 
+    [Networked(OnChanged = nameof(OnBombIDChanged))]
+    // bomb type, 0->default bomb, 1->smoke bomb, 2, black bomb
+    public int bomb_id { get; set; }
+    // =====================================
     [Networked] private TickTimer life {get;set;}
     [Networked] private TickTimer safe {get;set;}
 
@@ -18,7 +25,8 @@ public class bullet : NetworkBehaviour
 
     bool isHit = false;
 
-    public void Init(Vector3 startingVelocity){
+    public void Init(Vector3 startingVelocity, int bomb_type){
+        bomb_id = bomb_type;
         life = TickTimer.CreateFromSeconds(Runner, 10.0f);
         safe = TickTimer.CreateFromSeconds(Runner, 0.1f);
 
@@ -46,16 +54,36 @@ public class bullet : NetworkBehaviour
     IEnumerator explodeCO(){
         isHit = true;
         yield return new WaitForSeconds(1f);
-        int hitCount = Runner.LagCompensation.OverlapSphere(transform.position, 3f, Object.InputAuthority, hits, playerLayer, HitOptions.None);
-        for(int i = 0; i<hitCount; i++){
-            var obj = hits[i].Hitbox.Root;
-            if(obj.TryGetComponent<PlayerState>(out var state)){
-                Vector3 direction = obj.transform.position - transform.position;
-                float distance = direction.magnitude;
-                bool blocked = Physics.Raycast(transform.position, direction.normalized, distance, groundLayer);
-                if(!blocked)
-                {
-                    state.OnTakeDamage();
+        if (bomb_id == 0){
+            int hitCount = Runner.LagCompensation.OverlapSphere(transform.position, 3f, Object.InputAuthority, hits, playerLayer, HitOptions.None);
+            for(int i = 0; i<hitCount; i++){
+                var obj = hits[i].Hitbox.Root;
+                if(obj.TryGetComponent<PlayerState>(out var state)){
+                    Vector3 direction = obj.transform.position - transform.position;
+                    float distance = direction.magnitude;
+                    bool blocked = Physics.Raycast(transform.position, direction.normalized, distance, groundLayer);
+                    if(!blocked)
+                    {
+                        state.OnTakeDamage();
+                    }
+                }
+            }
+        }
+        else if (bomb_id == 1){
+
+        }
+        else if (bomb_id == 2){
+            int hitCount = Runner.LagCompensation.OverlapSphere(transform.position, 3f, Object.InputAuthority, hits, playerLayer, HitOptions.None);
+            for(int i = 0; i<hitCount; i++){
+                var obj = hits[i].Hitbox.Root;
+                if(obj.TryGetComponent<PlayerState>(out var state)){
+                    Vector3 direction = obj.transform.position - transform.position;
+                    float distance = direction.magnitude;
+                    bool blocked = Physics.Raycast(transform.position, direction.normalized, distance, groundLayer);
+                    if(!blocked)
+                    {
+                        //state.OnBlackScreen();
+                    }
                 }
             }
         }
@@ -67,7 +95,20 @@ public class bullet : NetworkBehaviour
     {
         MeshRenderer grenadeMesh = GetComponentInChildren<MeshRenderer>();
 
-        GameObject particle = Instantiate(explosionParticleSystemPrefab, grenadeMesh.transform.position, Quaternion.identity);
-        Destroy(particle, 5.0f);
+        if(bomb_id == 0){
+            GameObject particle = Instantiate(explosionParticleSystemPrefab, grenadeMesh.transform.position, Quaternion.identity);
+            Destroy(particle, 5.0f);
+        }
+        else if(bomb_id == 1){
+            GameObject particle = Instantiate(smokeParticleSystemPrefab, grenadeMesh.transform.position, Quaternion.identity);
+            Destroy(particle, 15.0f);
+        }
+        else if(bomb_id == 2){
+            GameObject particle = Instantiate(blackParticleSystemPrefab, grenadeMesh.transform.position, Quaternion.identity);
+            Destroy(particle, 5.0f);
+        }
     }
+
+    static void OnBombIDChanged(Changed<bullet> changed)
+    {}
 }

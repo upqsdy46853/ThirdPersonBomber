@@ -34,6 +34,14 @@ public class PlayerState : NetworkBehaviour
     [Networked(OnChanged = nameof(OnAmethystChanged))]
     public int amethystCount {get; set;}
 
+    // bomb control ========================
+    [Networked(OnChanged = nameof(OnBlackBombCountChanged))]
+    public int blackBombCount { get; set; }
+
+    [Networked(OnChanged = nameof(OnSmokeBombCountChanged))]
+    public int smokeBombCount { get; set; }
+    // =====================================
+
     private BasicSpawner _basicSpawner;
     private byte maxHP;
 
@@ -260,5 +268,23 @@ public class PlayerState : NetworkBehaviour
     {
         return (float)HP / (float)maxHP;
     }
+
+    // bomb control ========================
+    static void OnBlackBombCountChanged(Changed<PlayerState> changed)
+    {}
+
+    static void OnSmokeBombCountChanged(Changed<PlayerState> changed)
+    {}
+    public void OnGetBlackBomb()
+    {
+        if (Object.HasStateAuthority)
+            blackBombCount += 1;
+    }
+    public void OnGetSmokeBomb()
+    {
+        if (Object.HasStateAuthority)
+            smokeBombCount += 1;
+    }
+    // =====================================
 }
 

@@ -163,6 +163,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   explosionParticleSystemPrefab: {fileID: 3024599546387762972, guid: ceffd13b4b1fb0d4f9cfcfbcd60be52d, type: 3}
+  smokeParticleSystemPrefab: {fileID: 6852449800821504649, guid: 30408c1212f2fd44d96ecfecdaf1932d, type: 3}
+  blackParticleSystemPrefab: {fileID: 3024599546387762972, guid: 523790a1cad3eaf43916df146a7458bc, type: 3}
+  _bomb_id: 0
   collisionLayers:
     serializedVersion: 2
     m_Bits: 192

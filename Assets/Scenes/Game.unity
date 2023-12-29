@@ -10141,6 +10141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AmethystPrefab: {fileID: 6440792518188246117, guid: 89077ace329904de3a69c719a7638b01, type: 3}
+  smokeItemPrefab: {fileID: 6440792518188246117, guid: e464c76c2d5a88c4d807bd49fc610a98, type: 3}
+  blackItemPrefab: {fileID: 6440792518188246117, guid: 90a6d594b7fbaca45bf84f73ad318e3b, type: 3}
 --- !u!114 &1860199123
 MonoBehaviour:
   m_ObjectHideFlags: 0

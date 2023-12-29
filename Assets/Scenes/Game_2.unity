@@ -635,6 +635,13 @@ MonoBehaviour:
   redCollector: {fileID: 0}
   blueCollector: {fileID: 0}
   HPTMP: {fileID: 18091743}
+  bombSelecter: {fileID: 0}
+  bombBox0: {fileID: 0}
+  bombBox1: {fileID: 0}
+  bombBox2: {fileID: 0}
+  bombText0: {fileID: 0}
+  bombText1: {fileID: 0}
+  bombText2: {fileID: 0}
 --- !u!114 &186095915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -860,6 +867,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AmethystPrefab: {fileID: 6440792518188246117, guid: 89077ace329904de3a69c719a7638b01, type: 3}
+  smokeItemPrefab: {fileID: 6440792518188246117, guid: e464c76c2d5a88c4d807bd49fc610a98, type: 3}
+  blackItemPrefab: {fileID: 6440792518188246117, guid: 90a6d594b7fbaca45bf84f73ad318e3b, type: 3}
 --- !u!4 &530856975
 Transform:
   m_ObjectHideFlags: 0

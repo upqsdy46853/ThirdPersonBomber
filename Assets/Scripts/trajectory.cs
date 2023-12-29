@@ -19,6 +19,8 @@ public class trajectory : NetworkBehaviour
     Vector3 startingVelocity;
     public Animator a;
 
+    [Networked(OnChanged = nameof(OnBombIDChanged))]
+    int current_bomb_id {get;set;}
 
 
     void Awake()
@@ -69,7 +71,7 @@ public class trajectory : NetworkBehaviour
                     Object.InputAuthority,
                     (runner, o) =>
                     {
-                        o.GetComponent<bullet>().Init(data.startingVelocity);
+                        o.GetComponent<bullet>().Init(data.startingVelocity, current_bomb_id);
                         //a.SetBool( "attack", true );
                     });
                     a.SetBool( "attack", true );
@@ -93,6 +95,7 @@ public class trajectory : NetworkBehaviour
     }
 
     public override void Spawned(){
+        current_bomb_id = 1;
         if (!HasInputAuthority){
             lineRenderer.enabled = false;
             landingPos.SetActive(false);
@@ -102,6 +105,9 @@ public class trajectory : NetworkBehaviour
     public Vector3 GetStartingVelocity()
     {
         return startingVelocity;
+    }
+    static void OnBombIDChanged(Changed<trajectory> changed){
+
     }
     
 }
