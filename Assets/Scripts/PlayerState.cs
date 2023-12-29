@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
 using TMPro;
+using System;
 
 public class PlayerState : NetworkBehaviour
 {
@@ -78,6 +79,10 @@ public class PlayerState : NetworkBehaviour
         _selectedCode = 1;
         bomb_id = 1;
 
+        defaultColors = new List<Color>();//.Clear();
+        defaultColors2 = new List<Color>();//.Clear();
+        //Array.Clear(skinnedMeshRenderers,0,skinnedMeshRenderers.Length);
+        //Array.Clear(meshRenderers,0,meshRenderers.Length);
         skinnedMeshRenderers = playerModel.GetComponentsInChildren<SkinnedMeshRenderer>();
         foreach (SkinnedMeshRenderer skinnedMeshRenderer in skinnedMeshRenderers){
             for (int i = 0; i < skinnedMeshRenderer.materials.Length; i++)
@@ -211,7 +216,8 @@ public class PlayerState : NetworkBehaviour
                 black_ui = GameObject.Find("black");
                 if(black_ui!=null)
                     black_ui.SetActive(false);
-            }           
+            }
+            getMesh(gameObject);
             //if(black_ui == null){
             //    Debug.Log("cant find black ui");
             //}
@@ -296,11 +302,11 @@ public class PlayerState : NetworkBehaviour
             if (gameObject.TryGetComponent<CharacterController>(out var cc)){
                 cc.enabled = false;
                 if(Team == Color.red){
-                    movement.teleport(new Vector3(13.0f, 1.0f, Random.Range(-7.0f, 7.0f)));
+                    movement.teleport(new Vector3(13.0f, 1.0f, UnityEngine.Random.Range(-7.0f, 7.0f)));
                     Debug.Log(gameObject.transform.position);
                 }
                 else{
-                    movement.teleport(new Vector3(-15.0f, 1.0f, Random.Range(-7.0f, 7.0f)));
+                    movement.teleport(new Vector3(-15.0f, 1.0f, UnityEngine.Random.Range(-7.0f, 7.0f)));
                     Debug.Log(gameObject.transform.position);
                 }
                 cc.enabled = true;
@@ -333,8 +339,27 @@ public class PlayerState : NetworkBehaviour
 
     static void OnTeamChanged(Changed<PlayerState> changed)
     {
-        changed.Behaviour.MeshRenderer.material.color = changed.Behaviour.Team;
+        //changed.Behaviour.MeshRenderer.material.color = changed.Behaviour.Team;
         changed.Behaviour.playerNickNameTM.color = changed.Behaviour.Team;
+
+        changed.Behaviour.getMesh(changed.Behaviour.playerModel);
+    }
+
+    public void getMesh(GameObject gameobject){
+        defaultColors = new List<Color>();//.Clear();
+        defaultColors2 = new List<Color>();//.Clear();
+        //Array.Clear(skinnedMeshRenderers,0,skinnedMeshRenderers.Length);
+        //Array.Clear(meshRenderers,0,meshRenderers.Length);
+        skinnedMeshRenderers = gameobject.GetComponentsInChildren<SkinnedMeshRenderer>();
+        foreach (SkinnedMeshRenderer skinnedMeshRenderer in skinnedMeshRenderers){
+            for (int i = 0; i < skinnedMeshRenderer.materials.Length; i++)
+                defaultColors.Add(skinnedMeshRenderer.materials[i].color);
+        }
+        meshRenderers = gameobject.GetComponentsInChildren<MeshRenderer>();
+        foreach (MeshRenderer meshRenderer in meshRenderers){
+            for (int i = 0; i < meshRenderer.materials.Length; i++)
+                defaultColors2.Add(meshRenderer.materials[i].color);
+        }
     }
 
     [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
@@ -373,7 +398,7 @@ public class PlayerState : NetworkBehaviour
         Vector3 scale = new Vector3(1.0f, 1.0f, 1.0f);
         if (use_rand)
         {
-            scale = new Vector3(Random.Range(-1,1), Random.Range(0.5f, 1), Random.Range(-1, 1));
+            scale = new Vector3(UnityEngine.Random.Range(-1,1), UnityEngine.Random.Range(0.5f, 1), UnityEngine.Random.Range(-1, 1));
         }
 
         Runner.Spawn(amethyst,
