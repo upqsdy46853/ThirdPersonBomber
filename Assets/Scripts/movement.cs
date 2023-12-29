@@ -5,7 +5,7 @@ using Fusion;
 
 public class movement : NetworkBehaviour
 {
-    public float moveSpeed = 3;
+    public float moveSpeed = 4;
     public Animator a;
     private int hittedState;
     [HideInInspector] public Vector3 dir;
