@@ -14,5 +14,6 @@ public struct NetworkInputData : INetworkInput
     public byte buttons;
     public Vector3 startingVelocity;
     public NetworkBool isThrow;
+    public byte bombID;
 
 }

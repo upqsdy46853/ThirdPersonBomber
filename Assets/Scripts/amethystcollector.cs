@@ -8,7 +8,7 @@ public class amethystcollector : NetworkBehaviour
     [Networked(OnChanged = nameof(OnCountChanged))]
     public int collect_count { get; set; }
     // Start is called before the first frame update
-    void Start()
+    public override void Spawned()
     {
         collect_count = 0;
     }

@@ -21,7 +21,7 @@ public class gameLogic : NetworkBehaviour
     [Networked] public string winner { get; set; }
 
     // Start is called before the first frame update
-    void Start()
+    public override void Spawned()
     {
         has_set_timer = false;
         is_gameover = false;

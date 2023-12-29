@@ -16,10 +16,13 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     private bool _mouseButton0;
     private bool _isJump;
     private bool _isThrow;
+    private byte bomb_id;
 
     public ReadyUIHandler readyUIHandler;
 
-
+    void Awake() {
+        bomb_id = 1;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -29,6 +32,12 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
                 _isJump = true;
             if (Input.GetKeyDown(KeyCode.E))
                 _isThrow = true;
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+                bomb_id = 1;
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+                bomb_id = 2;
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+                bomb_id = 3;
         }
     }
 
@@ -81,6 +90,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         _isJump = false;
         data.isThrow = _isThrow;
         _isThrow = false;
+        data.bombID = bomb_id;
 
 
         // NetworkPlayer.Local is a static variable used to get the gameObject of local player 

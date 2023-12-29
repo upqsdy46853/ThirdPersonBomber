@@ -83,7 +83,7 @@ public class PlayerState : NetworkBehaviour
             {
                 RPC_SetTeam(Color.blue);
             }
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            /*if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 _selectedCode = 1;
             }
@@ -94,7 +94,7 @@ public class PlayerState : NetworkBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 _selectedCode = 3;
-            }
+            }*/
             if (_state == GameState.gameReady)
                 _readyUI.selectMap(_selectedCode);
             else if (_state == GameState.gameStart)
@@ -112,8 +112,14 @@ public class PlayerState : NetworkBehaviour
             {
                 throw_amethyst();
             }
+            if(_selectedCode<=3 && _selectedCode>=1){
+                _selectedCode = data.bombID;
+            }
 
         }
+        trajectory traj = gameObject.GetComponentInChildren<trajectory>();
+        traj.setBombID(_selectedCode-1);
+        Debug.Log("selected :" + _selectedCode);
     }
 
     public void ChangeState(GameState newState)

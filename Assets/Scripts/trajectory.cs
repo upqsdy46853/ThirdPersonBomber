@@ -95,7 +95,7 @@ public class trajectory : NetworkBehaviour
     }
 
     public override void Spawned(){
-        current_bomb_id = 1;
+        current_bomb_id = 0;
         if (!HasInputAuthority){
             lineRenderer.enabled = false;
             landingPos.SetActive(false);
@@ -105,6 +105,10 @@ public class trajectory : NetworkBehaviour
     public Vector3 GetStartingVelocity()
     {
         return startingVelocity;
+    }
+
+    public void setBombID(int id){
+        current_bomb_id = id;
     }
     static void OnBombIDChanged(Changed<trajectory> changed){
 
