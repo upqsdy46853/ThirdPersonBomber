@@ -71,8 +71,8 @@ public class ReadyUIHandler : NetworkBehaviour
                 _redLocalString += "\n";
                 _redTeamCount += 1;
             }
-            if(player.HasInputAuthority)
-                player.ChangeState(PlayerState.GameState.gameReady);
+            //if(player.HasInputAuthority)
+            player.ChangeState(PlayerState.GameState.gameReady);
         }
         blueTeamMembers.text = _blueLocalString;
         redTeamMembers.text = _redLocalString;
@@ -100,8 +100,8 @@ public class ReadyUIHandler : NetworkBehaviour
         {
             //DontDestroyOnLoad(gameObjectToTransfer);
             if(gameObjectToTransfer.TryGetComponent<PlayerState>(out var state)){
-                if(state.HasInputAuthority)
-                    state.ChangeState(PlayerState.GameState.gameStart);
+                //if(state.HasInputAuthority)
+                state.ChangeState(PlayerState.GameState.gameStart);
                 state.Respawn(0.0f);
             }
                 

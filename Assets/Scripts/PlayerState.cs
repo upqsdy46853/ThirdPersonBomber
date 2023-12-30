@@ -40,6 +40,8 @@ public class PlayerState : NetworkBehaviour
     
     [Networked(OnChanged = nameof(OnBlackBombCountChanged))]
     public int blackBombCount { get; set; }
+    int ini_smoke_bomb_count;
+    int ini_black_bomb_count;
     // =====================================
 
     private BasicSpawner _basicSpawner;
@@ -62,7 +64,9 @@ public class PlayerState : NetworkBehaviour
 
     void Start()
     {
-        maxHP = 2;
+        maxHP = 4;
+        ini_smoke_bomb_count = 3;
+        ini_black_bomb_count = 3;
         respawnCD = 3.0f;
         HP = maxHP;
         amethystCount = 0;
@@ -201,10 +205,19 @@ public class PlayerState : NetworkBehaviour
         _state = newState;
         if (newState == GameState.gameReady)
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            HP = maxHP;
+            amethystCount = 0;
+            smokeBombCount = ini_smoke_bomb_count;
+            blackBombCount = ini_black_bomb_count;
             _readyUI = GameObject.FindObjectOfType<ReadyUIHandler>();
         }
         else if(newState == GameState.gameStart)
         {
+            HP = maxHP;
+            amethystCount = 0;
+            smokeBombCount = ini_smoke_bomb_count;
+            blackBombCount = ini_black_bomb_count;
             _gameUI = GameObject.FindObjectOfType<InGameUIHandler>();
             
             if(HasInputAuthority){
@@ -215,6 +228,13 @@ public class PlayerState : NetworkBehaviour
             //if(black_ui == null){
             //    Debug.Log("cant find black ui");
             //}
+        }
+        else if (newState==GameState.gameOver){
+            HP = maxHP;
+            amethystCount = 0;
+            smokeBombCount = ini_smoke_bomb_count;
+            blackBombCount = ini_black_bomb_count;
+            Runner.SessionInfo.IsOpen = true;
         }
         
     }
@@ -357,8 +377,8 @@ public class PlayerState : NetworkBehaviour
             RPC_SetNickName(PlayerPrefs.GetString("PlayerNickname"));
             Local = this;
         }
-        smokeBombCount = 3;
-        blackBombCount = 3;
+        smokeBombCount = ini_smoke_bomb_count;
+        blackBombCount = ini_black_bomb_count;
     }
     public void PlayerLeft(PlayerRef player)
     {
