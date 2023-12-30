@@ -676,10 +676,10 @@ MonoBehaviour:
   UseLegacySharedModeInterpolation: 0
   TargetInterpolationDelay: 0.03
   gravity: -20
-  jumpImpulse: 8
+  jumpImpulse: 9
   acceleration: 10
   braking: 10
-  maxSpeed: 2
+  maxSpeed: 3
   rotationSpeed: 15
   _IsGrounded: 0
   _Velocity: {x: 0, y: 0, z: 0}
